@@ -1,0 +1,52 @@
+# config context path to "/" by setting an empty string
+server:
+  contextPath:
+
+# JACKSON
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5434/und
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+
+  data:
+    mongodb:
+      database: eventdb
+      username: eventuser
+      password: password
+      host: localhost
+      port: 27017
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+kafka:
+  ip: 192.168.0.107
+  port: 9092
+  topic:
+    event: Event-API
+    userevent: User-Event-API
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
+
+

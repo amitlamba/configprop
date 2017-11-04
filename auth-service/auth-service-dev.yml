@@ -1,0 +1,40 @@
+# config context path to "/" by setting an empty string
+server:
+  contextPath:
+
+# JACKSON
+spring:
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  mvc:
+      view:
+          prefix: /WEB-INF/views/
+          suffix: .jsp
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/und
+    username: postgres
+    password:  postgres
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      userdetail: userdetail
+      validate: auth/validate
+
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
+
+
