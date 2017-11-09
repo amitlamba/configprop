@@ -9,6 +9,8 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url: http://localhost:8761/eureka
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
   server:
     wait-time-in-ms-when-sync-empty: 5

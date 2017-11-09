@@ -13,3 +13,18 @@ zuul:
     client-panel:
       path: /client/**
       sensitiveHeaders:
+    event-api:
+      path: /event/**
+      sensitiveHeaders:
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka

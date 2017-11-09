@@ -19,10 +19,15 @@ spring:
       suffix: .jsp
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
 
 security:
   header:
@@ -35,3 +40,13 @@ security:
       path: auth
       refresh: refresh
 
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka

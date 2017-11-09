@@ -1,5 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
+  port: 5454
   contextPath:
 
 # JACKSON
@@ -9,7 +10,8 @@ spring:
       INDENT_OUTPUT: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5434/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
     tomcat:
@@ -22,10 +24,11 @@ spring:
   data:
     mongodb:
       database: eventdb
-      username: eventuser
-      password: password
-      host: localhost
-      port: 27017
+      # username: eventuser
+      # password: password
+      host: ${MONGO_IP}
+      port: {MONGO_PORT}
+      #27017
 
 security:
   header:
@@ -39,8 +42,9 @@ security:
       refresh: refresh
 
 kafka:
-  ip: 192.168.0.107
-  port: 9092
+  ip: ${KAFKA_IP}
+  port: ${KAFKA_PORT}
+  #6667
   topic:
     event: Event-API
     userevent: User-Event-API
@@ -48,5 +52,15 @@ kafka:
 #  level:
 #    org.springframework:
 #      security: DEBUG
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
 
