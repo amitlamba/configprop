@@ -6,6 +6,9 @@ spring:
     name: eureka-service
 
 eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
   client:
     register-with-eureka: false
     fetch-registry: false
