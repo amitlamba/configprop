@@ -51,6 +51,15 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
+kafka:
+  ip: ${KAFKA_IP}
+  port: ${KAFKA_PORT}
+  topic:
+    event: Event-API
+    userevent: User-Event-API
+    email: Email
+    sms: SMS
+
 encryption-decryption:
   key:
     default: DaO1TXt5B0R92Yys
