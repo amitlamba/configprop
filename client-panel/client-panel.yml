@@ -50,3 +50,8 @@ eureka:
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
