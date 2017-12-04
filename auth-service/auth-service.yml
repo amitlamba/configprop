@@ -30,7 +30,7 @@ spring:
 
 security:
   header:
-    token: Authorization
+    token: authorization
     username: UserName
   secret: mySecret
   expiration: 604800
