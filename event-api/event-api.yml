@@ -27,7 +27,7 @@ spring:
       # username: eventuser
       # password: password
       host: ${MONGO_IP}
-      port: ${MONGO_PORT}i
+      port: ${MONGO_PORT}
       #27017
 
 security:
@@ -96,3 +96,5 @@ eureka:
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+
