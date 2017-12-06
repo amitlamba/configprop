@@ -27,7 +27,7 @@ spring:
       # username: eventuser
       # password: password
       host: ${MONGO_IP}
-      port: {MONGO_PORT}
+      port: ${MONGO_PORT}
       #27017
 
 security:
