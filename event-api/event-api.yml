@@ -23,6 +23,7 @@ spring:
 
   data:
     mongodb:
+      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
       database: eventdb
       # username: eventuser
       # password: password
