@@ -1,12 +1,12 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
+  contextPath:
 
-# JACKSON
 # JACKSON
 spring:
   application:
-    name: und-scheduler
+    name: client-panel
   thymeleaf:
     cache: false
   jackson:
@@ -32,12 +32,12 @@ spring:
   data:
     mongodb:
       uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
-
-
-
-
-
-spring:
+      #database: eventdb
+      # username: eventuser
+      # password: password
+      #host: ${MONGO_IP}
+      #port: ${MONGO_PORT}
+      #27017
   cloud:
     stream:
       kafka:
@@ -57,11 +57,17 @@ spring:
             consumer:
               #startOffset: earliest
               group: rruleInput
+security:
+  header:
+    token: authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
 
-#logging:
-#  level:
-#    org.springframework:
-#      security: DEBUG
 eureka:
   instance:
     prefer-ip-address: true
@@ -74,3 +80,9 @@ eureka:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
 
+
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
