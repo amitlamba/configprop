@@ -10,7 +10,7 @@ spring:
       INDENT_OUTPUT: true
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/kamal
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
