@@ -3,20 +3,31 @@ server:
   port: 6363
 
 # JACKSON
+# JACKSON
 spring:
+  application:
+    name: und-scheduler
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
   datasource:
-    url: jdbc:postgresql://192.168.0.109:5432/recurrence
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: postgres
-    data-password: postgres
-    data-username: postgres
+    password:  postgres
     tomcat:
       initial-size: 10
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-
 
   data:
     mongodb:
