@@ -1,24 +1,27 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
-  contextPath:
 
 # JACKSON
 spring:
-  jackson:
-    serialization:
-      INDENT_OUTPUT: true
-
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
+    url: jdbc:postgresql://192.168.0.109:5432/recurrence
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password:  postgres
-    tomcat:
-      initial-size: 10
-      max-wait: 10000
-      max-active: 50
-      test-on-borrow: true
+    password: postgres
+    data-password: postgres
+    data-username: postgres
+    dbcp2:
+      url: jdbc:postgresql://192.168.0.109:5432/recurrence
+      driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 600000
+      maximum-pool-size: 10
+      data-source-class-name: org.postgresql.Driver
+      jdbc-url: jdbc:postgresql://192.168.0.109:5432/recurrence
+      username: postgres
+      password: postgres
+
 
 
   data:
@@ -26,16 +29,6 @@ spring:
       uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
 
 
-security:
-  header:
-    token: Authorization
-    username: UserName
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
 
 
 
