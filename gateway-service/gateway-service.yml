@@ -16,6 +16,9 @@ zuul:
     event-api:
       path: /event/**
       sensitiveHeaders:
+    und-scheduler:
+      path: /scheduler/**
+      sensitiveHeaders:
 
 
 eureka:
