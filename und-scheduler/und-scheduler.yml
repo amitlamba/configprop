@@ -38,9 +38,35 @@ spring:
       #host: ${MONGO_IP}
       #port: ${MONGO_PORT}
       #27017
-
-
-
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #offsetUpdateCount: 1
+          #replicationFactor: 2
+          #minPartitionCount: true
+          #minPartitionCount: 2
+        bindings:
+          createschedule:
+            group: rruleInput
+            destination: rruleInput
+            consumer:
+              #startOffset: earliest
+              group: rruleInput
+security:
+  header:
+    token: authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
 
 eureka:
   instance:
