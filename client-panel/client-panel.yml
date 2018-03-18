@@ -38,6 +38,18 @@ spring:
       #host: ${MONGO_IP}
       #port: ${MONGO_PORT}
       #27017
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+
 spring:
   cloud:
     stream:
@@ -71,16 +83,7 @@ spring:
                 #startOffset: earliest
                 group: resumeschedule
 
-security:
-  header:
-    token: authorization
-    username: UserName
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
+
 
 eureka:
   instance:
