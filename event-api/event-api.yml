@@ -42,14 +42,6 @@ security:
       path: auth
       refresh: refresh
 
-kafka:
-  ip: ${KAFKA_IP}
-  port: ${KAFKA_PORT}
-  #6667
-  topic:
-    event: Event-API
-    userevent: User-Event-API
-    eventUser: event-user
 
 spring:
   cloud:
