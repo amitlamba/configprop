@@ -1,3 +1,7 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 6363
+
 spring:
   jackson:
     serialization:
@@ -11,14 +15,31 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+  cloud:
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: true
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #offsetUpdateCount: 1
+          #replicationFactor: 2
+          #minPartitionCount: true
+          #minPartitionCount: 2
+        bindings:
+          createschedule:
+            group: createschedule
+            destination: createschedule
+            consumer:
+              #startOffset: earliest
+              group: createschedule
 
 
-# config context path to "/" by setting an empty string
-server:
-  port: 6363
 
-# JACKSON
-spring:
+
+
   application:
     name: und-scheduler
   thymeleaf:
@@ -44,25 +65,8 @@ spring:
       test-on-borrow: true
 
 
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: ${KAFKA_IP}
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: ${KAFKA_IP}
-          defaultZkPort: 2181
-          #offsetUpdateCount: 1
-          #replicationFactor: 2
-          #minPartitionCount: true
-          #minPartitionCount: 2
-        bindings:
-          createschedule:
-            group: rruleInput
-            destination: rruleInput
-            consumer:
-              #startOffset: earliest
-              group: rruleInput
+
+
 security:
   header:
     token: authorization
