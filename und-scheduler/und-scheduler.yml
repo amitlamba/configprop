@@ -38,6 +38,7 @@ spring:
       #host: ${MONGO_IP}
       #port: ${MONGO_PORT}
       #27017
+spring:
   cloud:
     stream:
       kafka:
@@ -46,17 +47,29 @@ spring:
           defaultBrokerPort: ${KAFKA_PORT}
           zkNodes: ${KAFKA_IP}
           defaultZkPort: 2181
-          offsetUpdateCount: 1
+          #offsetUpdateCount: 1
           #replicationFactor: 2
           #minPartitionCount: true
-          minPartitionCount: 2
+          #minPartitionCount: 2
         bindings:
-          rruleInput:
-            group: rruleInput
-            destination: rruleInput
+          event:
+            group: createschedule
+            destination: createschedule
             consumer:
               #startOffset: earliest
-              group: rruleInput
+              group: createschedule
+          eventUser:
+            group: pauseschedule
+            destination: pauseschedule
+            consumer:
+              #startOffset: earliest
+              group: pauseschedule
+          processedEventUserProfile:
+              group: resumeschedule
+              destination: resumeschedule
+              consumer:
+                #startOffset: earliest
+                group: resumeschedule
 security:
   header:
     token: authorization
