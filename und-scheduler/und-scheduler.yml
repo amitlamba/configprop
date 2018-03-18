@@ -39,18 +39,6 @@ spring:
       #port: ${MONGO_PORT}
       #27017
 
-security:
-  header:
-    token: authorization
-    username: UserName
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
-
-spring:
   cloud:
     stream:
       kafka:
