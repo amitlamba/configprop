@@ -39,37 +39,7 @@ spring:
       #port: ${MONGO_PORT}
       #27017
 
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: ${KAFKA_IP}
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: ${KAFKA_IP}
-          defaultZkPort: 2181
-          #offsetUpdateCount: 1
-          #replicationFactor: 2
-          #minPartitionCount: true
-          #minPartitionCount: 2
-        bindings:
-          createschedule:
-            group: createscheduleProcess
-            destination: createscheduleProcess
-            consumer:
-              #startOffset: earliest
-              group: createscheduleProcess
-          pauseschedule:
-            group: pausescheduleProcess
-            destination: pausescheduleProcess
-            consumer:
-              #startOffset: earliest
-              group: pausescheduleProcess
-          resumeschedule:
-              group: resumescheduleProcess
-              destination: resumescheduleProcess
-              consumer:
-                #startOffset: earliest
-                group: resumescheduleProcess
+
 
 
 eureka:
