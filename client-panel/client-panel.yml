@@ -38,7 +38,7 @@ spring:
       #host: ${MONGO_IP}
       #port: ${MONGO_PORT}
       #27017
-
+spring:
   cloud:
     stream:
       kafka:
