@@ -52,24 +52,24 @@ spring:
           #minPartitionCount: true
           #minPartitionCount: 2
         bindings:
-          event:
-            group: createschedule
-            destination: createschedule
+          createschedule:
+            group: createscheduleProcess
+            destination: createscheduleProcess
             consumer:
               #startOffset: earliest
-              group: createschedule
-          eventUser:
-            group: pauseschedule
-            destination: pauseschedule
+              group: createscheduleProcess
+          pauseschedule:
+            group: pausescheduleProcess
+            destination: pausescheduleProcess
             consumer:
               #startOffset: earliest
-              group: pauseschedule
-          processedEventUserProfile:
-              group: resumeschedule
-              destination: resumeschedule
+              group: pausescheduleProcess
+          resumeschedule:
+              group: resumescheduleProcess
+              destination: resumescheduleProcess
               consumer:
                 #startOffset: earliest
-                group: resumeschedule
+                group: resumescheduleProcess
 security:
   header:
     token: authorization
