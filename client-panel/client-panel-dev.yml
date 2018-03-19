@@ -26,7 +26,6 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
 
-
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
@@ -38,6 +37,7 @@ spring:
       max-active: 50
       test-on-borrow: true
 
+
   data:
     mongodb:
       uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
@@ -47,6 +47,7 @@ spring:
       #host: ${MONGO_IP}
       #port: ${MONGO_PORT}
       #27017
+
 security:
   header:
     token: Authorization
@@ -74,26 +75,16 @@ spring:
           #minPartitionCount: 2
         bindings:
           createschedule:
-            group: createscheduleProcess
-            destination: createscheduleProcess
+            group: createschedule
+            destination: createschedule
             consumer:
               #startOffset: earliest
-              group: createscheduleProcess
-          pauseschedule:
-            group: pausescheduleProcess
-            destination: pausescheduleProcess
-            consumer:
-              #startOffset: earliest
-              group: pausescheduleProcess
-          resumeschedule:
-              group: resumescheduleProcess
-              destination: resumescheduleProcess
-              consumer:
-                #startOffset: earliest
-                group: resumescheduleProcess
+              group: createschedule
 
-
-
+#logging:
+#  level:
+#    org.springframework:
+#      security: DEBUG
 eureka:
   instance:
     prefer-ip-address: true
@@ -105,9 +96,19 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-
-
-encryption-decryption:
-  key:
-    default: DaO1TXt5B0R92Yys
-    unsubscribe: TaO5T01R9BXt2yYS
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        errorDecoder: com.und.feign.AuthFeignErrorDecoder
+        #retryer: com.example.SimpleRetryer
+        #requestInterceptors:
+        #  - com.example.FooRequestInterceptor
+        #  - com.example.BarRequestInterceptor
+        #decode404: false
+        #encoder: com.example.SimpleEncoder
+        #decoder: com.example.SimpleDecoder
+        #contract: com.example.SimpleContract
