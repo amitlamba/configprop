@@ -60,26 +60,7 @@ security:
       refresh: refresh
 
 
-spring:
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: ${KAFKA_IP}
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: ${KAFKA_IP}
-          defaultZkPort: 2181
-          #offsetUpdateCount: 1
-          #replicationFactor: 2
-          #minPartitionCount: true
-          #minPartitionCount: 2
-        bindings:
-          createschedule:
-            group: createschedule
-            destination: createschedule
-            consumer:
-              #startOffset: earliest
-              group: createschedule
+
 
 #logging:
 #  level:
