@@ -1,0 +1,104 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 9191
+  contextPath:
+
+# JACKSON
+spring:
+  application:
+    name: client-panel
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
+      #database: eventdb
+      # username: eventuser
+      # password: password
+      #host: ${MONGO_IP}
+      #port: ${MONGO_PORT}
+      #27017
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #offsetUpdateCount: 1
+          #replicationFactor: 2
+          #minPartitionCount: true
+          #minPartitionCount: 2
+        bindings:
+          createschedule:
+            group: createscheduleProcess
+            destination: createscheduleProcess
+            consumer:
+              #startOffset: earliest
+              group: createscheduleProcess
+          pauseschedule:
+            group: pausescheduleProcess
+            destination: pausescheduleProcess
+            consumer:
+              #startOffset: earliest
+              group: pausescheduleProcess
+          resumeschedule:
+              group: resumescheduleProcess
+              destination: resumescheduleProcess
+              consumer:
+                #startOffset: earliest
+                group: resumescheduleProcess
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
