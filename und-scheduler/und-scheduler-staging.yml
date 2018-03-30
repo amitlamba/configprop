@@ -1,0 +1,80 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 6363
+  contextPath:
+
+# JACKSON
+spring:
+  application:
+    name: und-scheduler
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  data:
+    mongodb:
+      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
+      #database: eventdb
+      # username: eventuser
+      # password: password
+      #host: ${MONGO_IP}
+      #port: ${MONGO_PORT}
+      #27017
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          offsetUpdateCount: 1
+          #replicationFactor: 2
+          #minPartitionCount: true
+          minPartitionCount: 2
+        bindings:
+          rruleInput:
+            group: rruleInput
+            destination: rruleInput
+            consumer:
+              #startOffset: earliest
+              group: rruleInput
+security:
+  header:
+    token: authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
