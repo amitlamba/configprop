@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: zipkin-server
+    name: zipkin-service
 
 eureka:
   instance:
