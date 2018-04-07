@@ -38,15 +38,45 @@ spring:
       test-on-borrow: true
 
 
-  data:
-    mongodb:
-      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
-      #database: eventdb
-      # username: eventuser
-      # password: password
-      #host: ${MONGO_IP}
-      #port: ${MONGO_PORT}
-      #27017
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.0.109
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: 192.168.0.109
+          defaultZkPort: 2181
+        bindings:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          sleuth:
+            group: sleuthGroup
+            destination: sleuth
+      binders:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+
+
+
+  kafka:
+    admin:
+      properties:
+        client.id: client-panel
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-client-panel.log
+
+
 
 security:
   header:
@@ -62,10 +92,7 @@ security:
 
 
 
-#logging:
-#  level:
-#    org.springframework:
-#      security: DEBUG
+
 eureka:
   instance:
     prefer-ip-address: true
@@ -77,19 +104,4 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: full
-        errorDecoder: com.und.feign.AuthFeignErrorDecoder
-        #retryer: com.example.SimpleRetryer
-        #requestInterceptors:
-        #  - com.example.FooRequestInterceptor
-        #  - com.example.BarRequestInterceptor
-        #decode404: false
-        #encoder: com.example.SimpleEncoder
-        #decoder: com.example.SimpleDecoder
-        #contract: com.example.SimpleContract
+

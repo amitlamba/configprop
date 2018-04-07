@@ -17,6 +17,14 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+# Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
+# Because detection is disabled you have to set correct dialect by hand.
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
@@ -29,19 +37,50 @@ spring:
       max-active: 50
       test-on-borrow: true
 
-  data:
-    mongodb:
-      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
-      #database: eventdb
-      # username: eventuser
-      # password: password
-      #host: ${MONGO_IP}
-      #port: ${MONGO_PORT}
-      #27017
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.0.109
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: 192.168.0.109
+          defaultZkPort: 2181
+        bindings:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          sleuth:
+            group: sleuthGroup
+            destination: sleuth
+      binders:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+
+
+
+  kafka:
+    admin:
+      properties:
+        client.id: client-panel
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-client-panel.log
+
+
 
 security:
   header:
-    token: authorization
+    token: Authorization
     username: UserName
   secret: mySecret
   expiration: 604800
@@ -49,6 +88,10 @@ security:
     authentication:
       path: auth
       refresh: refresh
+
+
+
+
 
 eureka:
   instance:
@@ -61,16 +104,4 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-kafka:
-  ip: ${KAFKA_IP}
-  port: ${KAFKA_PORT}
-  topic:
-    event: Event-API
-    userevent: User-Event-API
-    email: Email
-    sms: SMS
 
-encryption-decryption:
-  key:
-    default: DaO1TXt5B0R92Yys
-    unsubscribe: TaO5T01R9BXt2yYS
