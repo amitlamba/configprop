@@ -1,15 +1,46 @@
 # config context path to "/" by setting an empty string
 server:
-  contextPath:
+  port: 5454
 
 # JACKSON
 spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+            #offsetUpdateCount: 1
+            #replicationFactor: 2
+            #minPartitionCount: true
+            #minPartitionCount: 2
+          bindings:
+            event:
+              group: eventprocess
+              destination: eventprocess
+              consumer:
+                #startOffset: earliest
+                group: eventprocess
+            eventUser:
+              group: eventUserprocess
+              destination: eventUserprocess
+              consumer:
+                #startOffset: earliest
+                group: eventUserprocess
+            processedEventUserProfile:
+                group: eventUserprocessEvents
+                destination: eventUserprocessEvents
+                consumer:
+                  #startOffset: earliest
+                  group: eventUserprocessEvents
   datasource:
-    url: jdbc:postgresql://localhost:5434/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
     tomcat:
@@ -21,11 +52,8 @@ spring:
 
   data:
     mongodb:
-      database: eventdb
-      username: eventuser
-      password: password
-      host: localhost
-      port: 27017
+      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
+
 
 security:
   header:
@@ -38,15 +66,21 @@ security:
       path: auth
       refresh: refresh
 
-kafka:
-  ip: 192.168.0.107
-  port: 9092
-  topic:
-    event: Event-API
-    userevent: User-Event-API
+
+
 #logging:
 #  level:
 #    org.springframework:
 #      security: DEBUG
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
 
