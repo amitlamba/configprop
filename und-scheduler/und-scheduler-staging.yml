@@ -85,4 +85,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /hd2/log/scheduler/und-scheduler.log
+  file: /home/shiv/hd2/undlog/scheduler/und-scheduler.log

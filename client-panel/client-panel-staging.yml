@@ -96,5 +96,5 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /hd2/log/client-panel/und-client-panel.log
+  file: /home/shiv/hd2/undlog/client-panel/und-client-panel.log
 

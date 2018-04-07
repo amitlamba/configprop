@@ -59,4 +59,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /hd2/log/auth-service/und-auth-service.log
+  file: /home/shiv/hd2/undlog/auth-service/und-auth-service.log
