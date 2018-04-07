@@ -12,25 +12,25 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-    cloud:
-        stream:
-          kafka:
-            binder:
-              brokers: ${KAFKA_IP}
-              defaultBrokerPort: ${KAFKA_PORT}
-              zkNodes: ${KAFKA_IP}
-              defaultZkPort: 2181
-          bindings:
-            scheduleJob:
-              group: scheduleJobGroup
-              destination: scheduleJob
-            sleuth:
-              group: sleuthGroup
-              destination: sleuth
-        binders:
-            scheduleJob:
-              group: scheduleJobGroup
-              destination: scheduleJob
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+        bindings:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          sleuth:
+            group: sleuthGroup
+            destination: sleuth
+      binders:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
   mvc:
     view:
       prefix: /WEB-INF/views/
