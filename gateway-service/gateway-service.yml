@@ -19,6 +19,9 @@ zuul:
     und-scheduler:
       path: /scheduler/**
       sensitiveHeaders:
+    emailsendservice:
+      path: /email/**
+      sensitiveHeaders:
     zipkin-service:
       path: /zipkin/**
       sensitiveHeaders:
