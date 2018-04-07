@@ -1,14 +1,34 @@
-# config context path to "/" by setting an empty string
 server:
   port: 5454
-  contextPath:
 
-# JACKSON
 spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+          bindings:
+            event:
+              group: eventprocess
+              destination: eventprocess
+              consumer:
+                group: eventprocess
+            eventUser:
+              group: eventUserprocess
+              destination: eventUserprocess
+              consumer:
+                group: eventUserprocess
+            processedEventUserProfile:
+                group: eventUserprocessEvents
+                destination: eventUserprocessEvents
+                consumer:
+                  group: eventUserprocessEvents
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
@@ -20,11 +40,11 @@ spring:
       max-active: 50
       test-on-borrow: true
 
-
   data:
     mongodb:
-      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
-
+      database: eventdb
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
 
 security:
   header:
@@ -38,42 +58,8 @@ security:
       refresh: refresh
 
 
-spring:
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: ${KAFKA_IP}
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: ${KAFKA_IP}
-          defaultZkPort: 2181
-          #offsetUpdateCount: 1
-          #replicationFactor: 2
-          #minPartitionCount: true
-          #minPartitionCount: 2
-        bindings:
-          event:
-            group: eventprocess
-            destination: eventprocess
-            consumer:
-              #startOffset: earliest
-              group: eventprocess
-          eventUser:
-            group: eventUserprocess
-            destination: eventUserprocess
-            consumer:
-              #startOffset: earliest
-              group: eventUserprocess
-          processedEventUserProfile:
-              group: eventUserprocessEvents
-              destination: eventUserprocessEvents
-              consumer:
-                #startOffset: earliest
-                group: eventUserprocessEvents
-#logging:
-#  level:
-#    org.springframework:
-#      security: DEBUG
+
+
 eureka:
   instance:
     prefer-ip-address: true
