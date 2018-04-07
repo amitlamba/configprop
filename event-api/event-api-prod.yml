@@ -72,3 +72,12 @@ eureka:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
 
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-event-api.log

@@ -66,18 +66,6 @@ spring:
         client.id: client-panel
 
 
-logging:
-  level:
-    org:
-      springframework: info
-      apache: info
-      hibernate: info
-    com:
-      und: info
-  file: log/und-client-panel.log
-
-
-
 security:
   header:
     token: Authorization
@@ -88,10 +76,6 @@ security:
     authentication:
       path: auth
       refresh: refresh
-
-
-
-
 
 eureka:
   instance:
@@ -104,4 +88,13 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-client-panel.log
 

@@ -1,28 +1,36 @@
 # config context path to "/" by setting an empty string
 server:
+  port: 9595
   contextPath:
 
 # JACKSON
 spring:
+  application:
+    name: auth-service
   thymeleaf:
     cache: false
   jackson:
     serialization:
       INDENT_OUTPUT: true
 
-  mvc:
-      view:
-          prefix: /WEB-INF/views/
-          suffix: .jsp
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
 
 security:
   header:
-    token: Authorization
+    token: authorization
     username: UserName
   secret: mySecret
   expiration: 604800
@@ -32,9 +40,23 @@ security:
       userdetail: userdetail
       validate: auth/validate
 
-#logging:
-#  level:
-#    org.springframework:
-#      security: DEBUG
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-auth-service.log
