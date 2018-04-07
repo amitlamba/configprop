@@ -80,4 +80,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /hd2/log/und-event-api.log
+  file: /hd2/log/event-api/und-event-api.log
