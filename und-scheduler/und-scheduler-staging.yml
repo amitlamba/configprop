@@ -85,4 +85,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-scheduler.log
+  file: /hd2/log/und-scheduler.log

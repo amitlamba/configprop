@@ -59,4 +59,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-auth-service.log
+  file: /hd2/log/und-auth-service.log
