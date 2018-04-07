@@ -29,34 +29,37 @@ spring:
       max-active: 50
       test-on-borrow: true
 
-  data:
-    mongodb:
-      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
-      #database: eventdb
-      # username: eventuser
-      # password: password
-      #host: ${MONGO_IP}
-      #port: ${MONGO_PORT}
-      #27017
+
   cloud:
     stream:
       kafka:
         binder:
-          brokers: ${KAFKA_IP}
+          brokers: 192.168.0.109
           defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: ${KAFKA_IP}
+          zkNodes: 192.168.0.109
           defaultZkPort: 2181
-          offsetUpdateCount: 1
-          #replicationFactor: 2
-          #minPartitionCount: true
-          minPartitionCount: 2
         bindings:
-          rruleInput:
-            group: rruleInput
-            destination: rruleInput
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          campaignTrigger:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
             consumer:
-              #startOffset: earliest
-              group: rruleInput
+              group: campaignTriggerGroup
+      binders:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+
+
+
+
+  kafka:
+    admin:
+      properties:
+        client.id: scheduler
+
 security:
   header:
     token: authorization

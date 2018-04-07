@@ -12,16 +12,7 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-      write-dates-as-timestamps: false
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
-    properties:
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-  jpa:
-    hibernate:
-      ddl-auto: none
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -38,9 +29,36 @@ spring:
       max-active: 50
       test-on-borrow: true
 
-  data:
-    mongodb:
-      uri: mongodb://${MONGO_IP}:${MONGO_PORT}/eventdb
+
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: 192.168.0.109
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: 192.168.0.109
+          defaultZkPort: 2181
+        bindings:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          campaignTrigger:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
+            consumer:
+              group: campaignTriggerGroup
+      binders:
+          scheduleJob:
+            group: scheduleJobGroup
+            destination: scheduleJob
+
+
+
+
+  kafka:
+    admin:
+      properties:
+        client.id: scheduler
 
 security:
   header:
@@ -52,10 +70,6 @@ security:
     authentication:
       path: auth
       refresh: refresh
-
-using:
-  spring:
-    schedulerFactory: true
 
 eureka:
   instance:
