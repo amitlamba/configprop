@@ -7,17 +7,18 @@ server:
 spring:
   application:
     name: und-scheduler
-  thymeleaf:
-    cache: false
   jackson:
     serialization:
-      INDENT_OUTPUT: true
-
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
+      write-dates-as-timestamps: false
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+  jpa:
+    hibernate:
+      ddl-auto: none
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
@@ -28,8 +29,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-
-
   cloud:
     stream:
       kafka:
@@ -51,10 +50,6 @@ spring:
           scheduleJob:
             group: scheduleJobGroup
             destination: scheduleJob
-
-
-
-
   kafka:
     admin:
       properties:
