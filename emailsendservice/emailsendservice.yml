@@ -11,6 +11,26 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+        bindings:
+          emailEvent:
+            group: emailEventGroup
+            destination: emailEvent
+      binders:
+          emailEvent:
+            group: emailEventGroup
+            destination: emailEvent
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
@@ -33,6 +53,10 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
+  kafka:
+    admin:
+      properties:
+        client.id: emailsendservice
 security:
   header:
     token: authorization
@@ -54,14 +78,6 @@ eureka:
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
-
-kafka:
-  ip: ${KAFKA_IP}
-  port: ${KAFKA_PORT}
-  topic:
-    event: Event-API
-    userevent: User-Event-API
-    email: Email
 
 
 logging:
