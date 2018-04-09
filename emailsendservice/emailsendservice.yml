@@ -43,6 +43,7 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
