@@ -11,7 +11,12 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
@@ -22,7 +27,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-
   data:
     mongodb:
       database: eventdb
@@ -58,7 +62,18 @@ kafka:
     event: Event-API
     userevent: User-Event-API
     email: Email
-    sms: SMS
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-emailsendservice.log
+
 
 encryption-decryption:
   key:
