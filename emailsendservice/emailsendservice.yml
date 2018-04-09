@@ -23,6 +23,12 @@ spring:
           emailEvent:
             group: emailEventGroup
             destination: emailEvent
+          EmailReadEvent:
+            group: eEmailReadEventGroup
+            destination: EmailReadEvent
+          clickTrackEvent:
+            group: clickTrackEventGroup
+            destination: clickTrackEvent
       binders:
           emailEvent:
             group: emailEventGroup
