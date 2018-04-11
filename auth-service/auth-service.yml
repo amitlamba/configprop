@@ -59,7 +59,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /auth-service/health
   client:
     register-with-eureka: true
     fetch-registry: true
