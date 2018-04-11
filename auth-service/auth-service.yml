@@ -76,3 +76,7 @@ logging:
     com:
       und: info
   file: log/und-auth-service.log
+
+und:
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@und.com
