@@ -84,5 +84,4 @@ logging:
       apache: info
       hibernate: info
     com:
-      und: info
-  file: log/und-scheduler.log
+      und: debug
