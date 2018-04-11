@@ -12,6 +12,22 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+        bindings:
+          clientEmail:
+            group: clientEmailGroup
+            destination: clientEmail
+      binders:
+          clientEmail:
+            group: clientEmailGroup
+            destination: clientEmail
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
