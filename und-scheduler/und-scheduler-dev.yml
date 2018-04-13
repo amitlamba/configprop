@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
-  contextPath:
 
 # JACKSON
 spring:
@@ -34,18 +33,6 @@ spring:
           campaignTrigger:
             group: campaignTriggerGroup
             destination: campaignTrigger
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
-    properties:
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
@@ -76,7 +63,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /scheduler/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
