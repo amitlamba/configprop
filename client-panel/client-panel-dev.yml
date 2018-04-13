@@ -7,8 +7,6 @@ server:
 spring:
   application:
     name: client-panel
-  thymeleaf:
-    cache: false
   jackson:
     serialization:
       INDENT_OUTPUT: true
@@ -80,7 +78,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /client-panel/health
   client:
     register-with-eureka: true
     fetch-registry: true
