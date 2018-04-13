@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
-  contextPath:
 
 # JACKSON
 spring:
@@ -9,34 +8,15 @@ spring:
     name: und-scheduler
   jackson:
     serialization:
-      write-dates-as-timestamps: false
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
-    properties:
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-  jpa:
-    hibernate:
-      ddl-auto: none
-  datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
-    driver-class-name: org.postgresql.Driver
-    username: postgres
-    password:  postgres
-    tomcat:
-      initial-size: 10
-      max-wait: 10000
-      max-active: 50
-      test-on-borrow: true
+      INDENT_OUTPUT: true
   cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: 192.168.0.109
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: 192.168.0.109
-          defaultZkPort: 2181
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
         bindings:
           scheduleJob:
             group: scheduleJobGroup
@@ -50,6 +30,30 @@ spring:
           scheduleJob:
             group: scheduleJobGroup
             destination: scheduleJob
+          campaignTrigger:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
   kafka:
     admin:
       properties:
