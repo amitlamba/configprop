@@ -81,11 +81,3 @@ eureka:
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-logging:
-  level:
-    org:
-      springframework: debug
-      apache: debug
-      hibernate: debug
-    com:
-      und: debug
