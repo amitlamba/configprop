@@ -33,7 +33,17 @@ spring:
           campaignTrigger:
             group: campaignTriggerGroup
             destination: campaignTrigger
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
 
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
