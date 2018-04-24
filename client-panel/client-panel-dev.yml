@@ -7,6 +7,8 @@ server:
 spring:
   application:
     name: client-panel
+  thymeleaf:
+    cache: false
   jackson:
     serialization:
       INDENT_OUTPUT: true
@@ -16,16 +18,12 @@ spring:
           binder:
             brokers: ${KAFKA_IP}
             defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
+            #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            auto-create-topics: true
+            min-partition-count: 1
+            replication-factor: 1
         bindings:
-          scheduleJob:
-            group: scheduleJobGroup
-            destination: scheduleJob
-          sleuth:
-            group: sleuthGroup
-            destination: sleuth
-      binders:
           scheduleJob:
             group: scheduleJobGroup
             destination: scheduleJob
@@ -78,7 +76,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /client-panel/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
