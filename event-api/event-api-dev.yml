@@ -19,8 +19,11 @@ spring:
 
 
           bindings:
-            event:
-              group: eventprocess
+            event-in:
+              group: eventin
+              destination: event
+            event-out:
+              group: eventout
               destination: event
             eventUser:
               group: eventUserprocess
