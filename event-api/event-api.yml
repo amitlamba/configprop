@@ -13,23 +13,26 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
-            auto-create-topics: true
-            min-partition-count: 1
-            replication-factor: 1
-
-
-          bindings:
-            event:
-              group: eventprocess
-              destination: event
-            eventUser:
-              group: eventUserprocess
-              destination: eventUser
-            processedEventUserProfile:
-                group: eventUserprocessEvents
-                destination: processedEventUserProfile
-        #binders:
-
+            #producer-configuration:
+        bindings:
+          inEvent:
+            group: inEvent
+            destination: event
+          outEvent:
+            group: outEvent
+            destination: event
+          inEventUser:
+            group: inEventUser
+            destination: eventUser
+          outEventUser:
+            group: outEventUser
+            destination: eventUser
+          inProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfile
+          outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfile
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und

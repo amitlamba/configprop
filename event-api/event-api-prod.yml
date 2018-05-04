@@ -11,24 +11,28 @@ spring:
           binder:
             brokers: ${KAFKA_IP}
             defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
+            #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
-          bindings:
-            event:
-              group: eventprocess
-              destination: eventprocess
-              consumer:
-                group: eventprocess
-            eventUser:
-              group: eventUserprocess
-              destination: eventUserprocess
-              consumer:
-                group: eventUserprocess
-            processedEventUserProfile:
-                group: eventUserprocessEvents
-                destination: eventUserprocessEvents
-                consumer:
-                  group: eventUserprocessEvents
+            #producer-configuration:
+        bindings:
+          inEvent:
+            group: inEvent
+            destination: event
+          outEvent:
+            group: outEvent
+            destination: event
+          inEventUser:
+            group: inEventUser
+            destination: eventUser
+          outEventUser:
+            group: outEventUser
+            destination: eventUser
+          inProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfile
+          outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfile
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
