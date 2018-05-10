@@ -18,20 +18,14 @@ spring:
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
         bindings:
-          scheduleJob:
-            group: scheduleJobGroup
+          scheduleJobRecieve:
+            group: scheduleJobRecieve
             destination: scheduleJob
-          campaignTrigger:
-            group: campaignTriggerGroup
+          campaignTriggerSend:
+            group: campaignTriggerSend
             destination: campaignTrigger
-            consumer:
-              group: campaignTriggerGroup
-      binders:
-          scheduleJob:
-            group: scheduleJobGroup
-            destination: scheduleJob
-          campaignTrigger:
-            group: campaignTriggerGroup
+          campaignTriggerRecieve:
+            group: campaignTriggerRecieve
             destination: campaignTrigger
   mvc:
     view:

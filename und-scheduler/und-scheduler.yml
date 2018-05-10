@@ -10,6 +10,25 @@ spring:
   jackson:
     serialization:
       write-dates-as-timestamps: false
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            #zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+            #producer-configuration:
+        bindings:
+          scheduleJobRecieve:
+            group: scheduleJobRecieve
+            destination: scheduleJob
+          campaignTriggerSend:
+            group: campaignTriggerSend
+            destination: campaignTrigger
+          campaignTriggerRecieve:
+            group: campaignTriggerRecieve
+            destination: campaignTrigger
   quartz:
     job-store-type: jdbc
     jdbc:
@@ -29,27 +48,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-  cloud:
-    stream:
-      kafka:
-        binder:
-          brokers: 192.168.0.109
-          defaultBrokerPort: ${KAFKA_PORT}
-          zkNodes: 192.168.0.109
-          defaultZkPort: 2181
-        bindings:
-          scheduleJob:
-            group: scheduleJobGroup
-            destination: scheduleJob
-          campaignTrigger:
-            group: campaignTriggerGroup
-            destination: campaignTrigger
-            consumer:
-              group: campaignTriggerGroup
-      binders:
-          scheduleJob:
-            group: scheduleJobGroup
-            destination: scheduleJob
   kafka:
     admin:
       properties:
@@ -69,7 +67,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /scheduler/health
   client:
     register-with-eureka: true
     fetch-registry: true

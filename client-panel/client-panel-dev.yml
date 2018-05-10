@@ -24,9 +24,13 @@ spring:
             min-partition-count: 1
             replication-factor: 1
         bindings:
-          scheduleJob:
+          scheduleJobSend:
             group: scheduleJobGroup
             destination: scheduleJob
+  kafka:
+    admin:
+      properties:
+        client.id: client-panel
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -56,10 +60,6 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
-  kafka:
-    admin:
-      properties:
-        client.id: client-panel
 
 
 security:

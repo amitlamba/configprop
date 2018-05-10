@@ -24,7 +24,7 @@ spring:
             min-partition-count: 1
             replication-factor: 1
         bindings:
-          scheduleJob:
+          scheduleJobSend:
             group: scheduleJobGroup
             destination: scheduleJob
   mvc:
