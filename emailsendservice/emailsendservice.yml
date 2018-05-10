@@ -32,7 +32,9 @@ spring:
           EmailUpdateReceive:
             group: EmailUpdateReceiveGroup
             destination: EmailUpdate
-
+          campaignTriggerReceive:
+            group: campaignTriggerReceive
+            destination: campaignTrigger
   mvc:
     view:
       prefix: /WEB-INF/views/

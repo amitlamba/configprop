@@ -26,9 +26,7 @@ spring:
           campaignTriggerSend:
             group: campaignTriggerSend
             destination: campaignTrigger
-          campaignTriggerReceive:
-            group: campaignTriggerReceive
-            destination: campaignTrigger
+
   quartz:
     job-store-type: jdbc
     jdbc:

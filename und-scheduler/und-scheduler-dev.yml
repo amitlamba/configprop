@@ -24,9 +24,7 @@ spring:
           campaignTriggerSend:
             group: campaignTriggerSend
             destination: campaignTrigger
-          campaignTriggerReceive:
-            group: campaignTriggerReceive
-            destination: campaignTrigger
+
   mvc:
     view:
       prefix: /WEB-INF/views/
