@@ -15,7 +15,7 @@ spring:
           binder:
             brokers: ${KAFKA_IP}
             defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
+            #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
         bindings:
           scheduleJobReceive:
@@ -48,10 +48,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-  kafka:
-    admin:
-      properties:
-        client.id: scheduler
 
 security:
   header:

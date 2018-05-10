@@ -56,10 +56,6 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
-  kafka:
-    admin:
-      properties:
-        client.id: client-panel
 
 
 security:

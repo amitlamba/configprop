@@ -48,10 +48,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-  kafka:
-    admin:
-      properties:
-        client.id: scheduler
 
 security:
   header:

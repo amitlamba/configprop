@@ -27,10 +27,7 @@ spring:
           scheduleJobSend:
             group: scheduleJobGroup
             destination: scheduleJob
-  kafka:
-    admin:
-      properties:
-        client.id: client-panel
+
   mvc:
     view:
       prefix: /WEB-INF/views/

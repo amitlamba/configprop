@@ -20,19 +20,19 @@ spring:
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
         bindings:
-          emailEvent:
+          emailEventSend:
             group: emailEventGroup
             destination: emailEvent
-          EmailReadEvent:
-            group: eEmailReadEventGroup
-            destination: EmailReadEvent
-          clickTrackEvent:
+          clientEmailReceive:
+            group: clientEmailReceiveGroup
+            destination: clientEmail
+          clickTrackEventReceive:
             group: clickTrackEventGroup
             destination: clickTrackEvent
-      binders:
-          emailEvent:
-            group: emailEventGroup
-            destination: emailEvent
+          EmailUpdateReceive:
+            group: EmailUpdateReceiveGroup
+            destination: EmailUpdate
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -60,10 +60,6 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
-  kafka:
-    admin:
-      properties:
-        client.id: emailsendservice
 security:
   header:
     token: authorization
@@ -78,7 +74,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /email-service/health
   client:
     register-with-eureka: true
     fetch-registry: true

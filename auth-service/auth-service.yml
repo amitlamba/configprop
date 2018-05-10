@@ -21,13 +21,10 @@ spring:
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
         bindings:
-          clientEmail:
-            group: clientEmailGroup
+          clientEmailSend:
+            group: clientEmailSendGroup
             destination: clientEmail
-      binders:
-          clientEmail:
-            group: clientEmailGroup
-            destination: clientEmail
+
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
