@@ -20,14 +20,14 @@ spring:
             defaultZkPort: 2181
             #producer-configuration:
         bindings:
-          scheduleJobRecieve:
-            group: scheduleJobRecieve
+          scheduleJobReceive:
+            group: scheduleJobReceive
             destination: scheduleJob
           campaignTriggerSend:
             group: campaignTriggerSend
             destination: campaignTrigger
-          campaignTriggerRecieve:
-            group: campaignTriggerRecieve
+          campaignTriggerReceive:
+            group: campaignTriggerReceive
             destination: campaignTrigger
   quartz:
     job-store-type: jdbc
