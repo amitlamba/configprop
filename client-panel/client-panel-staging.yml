@@ -27,6 +27,9 @@ spring:
           scheduleJobSend:
             group: scheduleJobGroup
             destination: scheduleJob
+          scheduleJobAckReceive:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
   mvc:
     view:
       prefix: /WEB-INF/views/

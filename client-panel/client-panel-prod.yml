@@ -24,9 +24,15 @@ spring:
             min-partition-count: 1
             replication-factor: 1
         bindings:
-          scheduleJobSend:
-            group: scheduleJobGroup
+          scheduleJobReceive:
+            group: scheduleJobReceive
             destination: scheduleJob
+          campaignTriggerSend:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
+          scheduleJobAckSend:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
   mvc:
     view:
       prefix: /WEB-INF/views/

@@ -24,8 +24,11 @@ spring:
             group: scheduleJobReceive
             destination: scheduleJob
           campaignTriggerSend:
-            group: campaignTriggerSend
+            group: campaignTriggerGroup
             destination: campaignTrigger
+          scheduleJobAckSend:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
 
   quartz:
     job-store-type: jdbc
