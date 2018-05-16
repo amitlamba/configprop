@@ -33,6 +33,12 @@ spring:
           outProcessEventUserProfile:
               group: processEventUserProfile
               destination: processUserProfile
+          inTrackEvent:
+            group: inTrackEvent
+            destination: trackEvent
+          outTrackEvent:
+            group: outTrackEvent
+            destination: trackEvent
         #binders:
 
 
