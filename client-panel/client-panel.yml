@@ -20,9 +20,6 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
-            auto-create-topics: true
-            min-partition-count: 1
-            replication-factor: 1
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
