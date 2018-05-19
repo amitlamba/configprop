@@ -30,7 +30,9 @@ spring:
           scheduleJobAckReceive:
             group: scheduleJobAckGroup
             destination: scheduleJobAck
-
+          clientEmailSend:
+            group: clientEmailSendGroup
+            destination: clientEmail
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -89,7 +91,7 @@ logging:
     org:
       springframework: info
       apache: info
-      hibernate: info
+      hibernate: debug
     com:
       und: info
   file: log/und-client-panel.log

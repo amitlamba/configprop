@@ -27,6 +27,9 @@ spring:
           scheduleJobAckReceive:
             group: scheduleJobAckGroup
             destination: scheduleJobAck
+          clientEmailSend:
+            group: clientEmailSendGroup
+            destination: clientEmail
 
   mvc:
     view:
