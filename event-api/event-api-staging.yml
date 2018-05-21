@@ -1,6 +1,10 @@
 server:
   port: 5454
 
+und:
+  url:
+    event: http://userndot.com/event
+
 spring:
   jackson:
     serialization:
@@ -39,6 +43,12 @@ spring:
           outTrackEvent:
             group: outTrackEvent
             destination: trackEvent
+          inEmailRead:
+            group: inEmailRead
+            destination: emailRead
+          outEmailRead:
+            group: outEmailRead
+            destination: emailRead
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
