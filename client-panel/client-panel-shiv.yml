@@ -1,0 +1,96 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 9191
+  contextPath:
+
+# JACKSON
+spring:
+  application:
+    name: client-panel
+  thymeleaf:
+    cache: false
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            #zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+        bindings:
+          scheduleJobSend:
+            group: scheduleJobGroup
+            destination: scheduleJob
+          scheduleJobAckReceive:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
+          clientEmailSend:
+            group: clientEmailSendGroup
+            destination: clientEmail
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+# Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
+# Because detection is disabled you have to set correct dialect by hand.
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undshiv
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+  data:
+    mongodb:
+      database: eventdb
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
+
+
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /client-panel/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-client-panel.log
+
