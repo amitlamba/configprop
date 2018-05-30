@@ -41,7 +41,7 @@ spring:
             destination: trackEvent
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/unddev
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -53,7 +53,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdb
+      database: eventdbdev
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 

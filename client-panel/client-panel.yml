@@ -45,7 +45,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/unddev
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -56,7 +56,7 @@ spring:
       test-on-borrow: true
   data:
     mongodb:
-      database: eventdb
+      database: eventdbdev
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
