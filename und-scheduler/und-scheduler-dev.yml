@@ -75,8 +75,8 @@ eureka:
 logging:
   level:
     org:
-      springframework: debug
-      apache: debug
-      hibernate: debug
+      springframework: info
+      apache: info
+      hibernate: info
     com:
-      und: debug
+      und: info
