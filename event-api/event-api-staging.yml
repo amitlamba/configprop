@@ -21,36 +21,36 @@ spring:
         bindings:
           inEvent:
             group: inEvent
-            destination: event
+            destination: eventshiv
           outEvent:
             group: outEvent
-            destination: event
+            destination: eventshiv
           inEventUser:
             group: inEventUser
-            destination: eventUser
+            destination: eventUsershiv
           outEventUser:
             group: outEventUser
-            destination: eventUser
+            destination: eventUsershiv
           inProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfile
+              destination: processUserProfileshiv
           outProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfile
+              destination: processUserProfileshiv
           inTrackEvent:
             group: inTrackEvent
-            destination: trackEvent
+            destination: trackEventshiv
           outTrackEvent:
             group: outTrackEvent
-            destination: trackEvent
+            destination: trackEventshiv
           inEmailRead:
             group: inEmailRead
-            destination: emailRead
+            destination: emailReadshiv
           outEmailRead:
             group: outEmailRead
-            destination: emailRead
+            destination: emailReadshiv
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -62,7 +62,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdbstaging
+      database: shiv
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
