@@ -39,7 +39,7 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
-    database: undstaging
+    database: 1
 
 security:
   header:
