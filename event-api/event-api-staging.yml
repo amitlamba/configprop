@@ -1,5 +1,5 @@
 server:
-  port: 5454
+  port: 5464
 
 und:
   url:
@@ -62,7 +62,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdb
+      database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
@@ -100,4 +100,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/event-api/und-event-api.log
+  file: /home/shiv/hd2/undlog/staging/event-api/und-event-api.log
