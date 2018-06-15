@@ -1,6 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9595
+  port: 9605
   contextPath:
 
 # JACKSON
@@ -23,10 +23,10 @@ spring:
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmail
+            destination: clientEmailStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -39,6 +39,7 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
+    database: undstaging
 
 security:
   header:
@@ -61,7 +62,7 @@ eureka:
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
 
 logging:
   level:
@@ -71,4 +72,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/auth-service/und-auth-service.log
+  file: /home/shiv/hd2/undlog/staging/auth-service/und-auth-service.log

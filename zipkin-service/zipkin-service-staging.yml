@@ -1,0 +1,17 @@
+server:
+  port: 9421
+
+spring:
+  application:
+    name: zipkin-service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
