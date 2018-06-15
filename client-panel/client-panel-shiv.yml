@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
   port: 9191
-  contextPath:
 
 # JACKSON
 spring:
@@ -30,7 +29,8 @@ spring:
           clientEmailSend:
             group: clientEmailSendGroup
             destination: clientEmail
-
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -38,6 +38,7 @@ spring:
 # Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
 # Because detection is disabled you have to set correct dialect by hand.
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
       hibernate:
@@ -45,7 +46,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undshiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -56,9 +57,58 @@ spring:
       test-on-borrow: true
   data:
     mongodb:
-      database: eventdb
+      database: shiv
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
+  flyway:
+    placeholder-replacement: false
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /client-panel/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+      data:
+        mongodb:
+          core:
+            MongoTemplate: DEBUG
+  file: log/und-client-panel.log
+
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        errorDecoder: com.und.feign.AuthFeignErrorDecoder
+
 
 
 
@@ -73,24 +123,9 @@ security:
       path: auth
       refresh: refresh
 
-eureka:
-  instance:
-    prefer-ip-address: true
-    health-check-url-path: /client-panel/health
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    region: desktop
-    service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
-logging:
-  level:
-    org:
-      springframework: info
-      apache: info
-      hibernate: info
-    com:
-      und: info
-  file: log/und-client-panel.log
+system:
+  user:
+    token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXN0ZW11bmQiLCJ1c2VySWQiOiIxIiwiY2xpZW50SWQiOiIxIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfRVZFTlQiLCJST0xFX1VTRVIiLCJST0xFX1NZU1RFTSJdLCJjcmVhdGVkIjoxNTI4NzMxOTcwNTUyLCJleHAiOjkyMjMzNzIwMzY4NTQ3NzV9.hcoZvUz5XwHXPW54TaW-FmLL50wr44WdoOjgOJ0LOYgwaF2EdJzKYsKIJVYIycHSTXXojzGmZFgoCMSrKMtuRQ
+
 
