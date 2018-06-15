@@ -26,13 +26,13 @@ spring:
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
-            destination: scheduleJob
+            destination: scheduleJobStaging
           scheduleJobAckReceive:
             group: scheduleJobAckGroup
-            destination: scheduleJobAck
+            destination: scheduleJobAckStaging
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmail
+            destination: clientEmailStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
