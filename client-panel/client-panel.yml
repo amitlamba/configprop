@@ -48,7 +48,7 @@ spring:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/unddev
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: {cipher}b79c10b24f5993f159e57c00549d39e73288c5097751c3ad3cb4a6c6e09cba91
+    password: '{cipher}b79c10b24f5993f159e57c00549d39e73288c5097751c3ad3cb4a6c6e09cba91'
     tomcat:
       initial-size: 10
       max-wait: 10000
