@@ -37,3 +37,6 @@ eureka:
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+encrypt:
+  key: UserNDot@18

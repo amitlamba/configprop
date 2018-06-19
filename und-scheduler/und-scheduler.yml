@@ -81,3 +81,6 @@ logging:
     com:
       und: info
   file: log/und-scheduler.log
+
+encrypt:
+  key: UserNDot@18

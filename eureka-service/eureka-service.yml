@@ -17,3 +17,6 @@ eureka:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
   server:
     wait-time-in-ms-when-sync-empty: 5
+
+encrypt:
+  key: UserNDot@18

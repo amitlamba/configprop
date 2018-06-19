@@ -94,3 +94,5 @@ logging:
       und: info
   file: log/und-client-panel.log
 
+encrypt:
+  key: UserNDot@18

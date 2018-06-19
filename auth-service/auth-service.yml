@@ -77,3 +77,6 @@ logging:
 und:
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@und.com
+
+encrypt:
+  key: UserNDot@18
