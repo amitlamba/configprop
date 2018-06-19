@@ -21,36 +21,36 @@ spring:
         bindings:
           inEvent:
             group: inEvent
-            destination: eventshiv
+            destination: eventStaging
           outEvent:
             group: outEvent
-            destination: eventshiv
+            destination: eventStaging
           inEventUser:
             group: inEventUser
-            destination: eventUsershiv
+            destination: eventUserStaging
           outEventUser:
             group: outEventUser
-            destination: eventUsershiv
+            destination: eventUserStaging
           inProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfileshiv
+              destination: processUserProfileStaging
           outProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfileshiv
+              destination: processUserProfileStaging
           inTrackEvent:
             group: inTrackEvent
-            destination: trackEventshiv
+            destination: trackEventStaging
           outTrackEvent:
             group: outTrackEvent
-            destination: trackEventshiv
+            destination: trackEventStaging
           inEmailRead:
             group: inEmailRead
-            destination: emailReadshiv
+            destination: emailReadStaging
           outEmailRead:
             group: outEmailRead
-            destination: emailReadshiv
+            destination: emailReadStaging
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
