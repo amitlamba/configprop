@@ -94,6 +94,6 @@ logging:
       und: info
   file: log/und-client-panel.log
 
-encrypt:
-  key: UserNDot@18
-  fail-on-error: false
+#encrypt:
+#  key: UserNDot@18
+#  fail-on-error: false
