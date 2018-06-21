@@ -1,0 +1,106 @@
+server:
+  port: 5454
+
+und:
+  url:
+    event: http://userndot.com/event
+
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            #zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+            #producer-configuration:
+        bindings:
+          inEvent:
+            group: inEvent
+            destination: eventshiv
+          outEvent:
+            group: outEvent
+            destination: eventshiv
+          inEventUser:
+            group: inEventUser
+            destination: eventUsershiv
+          outEventUser:
+            group: outEventUser
+            destination: eventUsershiv
+          inProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfileshiv
+          outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfileshiv
+          inTrackEvent:
+            group: inTrackEvent
+            destination: trackEventshiv
+          outTrackEvent:
+            group: outTrackEvent
+            destination: trackEventshiv
+          inEmailRead:
+            group: inEmailRead
+            destination: emailReadshiv
+          outEmailRead:
+            group: outEmailRead
+            destination: emailReadshiv
+        #binders:
+
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  data:
+    mongodb:
+      database: shiv
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-event-api.log

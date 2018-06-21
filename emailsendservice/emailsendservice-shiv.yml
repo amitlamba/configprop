@@ -22,19 +22,19 @@ spring:
         bindings:
           emailEventSend:
             group: emailEventGroup
-            destination: emailEvent
+            destination: emailEventshiv
           clientEmailReceive:
             group: clientEmailReceiveGroup
-            destination: clientEmail
+            destination: clientEmailshiv
           clickTrackEventReceive:
             group: clickTrackEventGroup
-            destination: clickTrackEvent
+            destination: clickTrackEventshiv
           EmailUpdateReceive:
             group: EmailUpdateReceiveGroup
-            destination: EmailUpdate
+            destination: EmailUpdateshiv
           campaignTriggerReceive:
             group: campaignTriggerReceive
-            destination: campaignTrigger
+            destination: campaignTriggershiv
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -47,7 +47,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undshiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres

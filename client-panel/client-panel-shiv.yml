@@ -22,13 +22,13 @@ spring:
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
-            destination: scheduleJob
+            destination: scheduleJobshiv
           scheduleJobAckReceive:
             group: scheduleJobAckGroup
-            destination: scheduleJobAck
+            destination: scheduleJobAckshiv
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmail
+            destination: clientEmailshiv
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
   mvc:
