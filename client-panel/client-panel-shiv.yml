@@ -123,9 +123,11 @@ security:
       path: auth
       refresh: refresh
 
-
-system:
-  user:
-    token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzeXN0ZW11bmQiLCJ1c2VySWQiOiIxIiwiY2xpZW50SWQiOiIxIiwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfRVZFTlQiLCJST0xFX1VTRVIiLCJST0xFX1NZU1RFTSJdLCJjcmVhdGVkIjoxNTI4NzMxOTcwNTUyLCJleHAiOjkyMjMzNzIwMzY4NTQ3NzV9.hcoZvUz5XwHXPW54TaW-FmLL50wr44WdoOjgOJ0LOYgwaF2EdJzKYsKIJVYIycHSTXXojzGmZFgoCMSrKMtuRQ
-
-
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@und.com

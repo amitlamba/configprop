@@ -1,10 +1,6 @@
 server:
   port: 5454
 
-und:
-  url:
-    event: http://userndot.com/event
-
 spring:
   jackson:
     serialization:
@@ -104,3 +100,12 @@ logging:
     com:
       und: info
   file: log/und-event-api.log
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@und.com
