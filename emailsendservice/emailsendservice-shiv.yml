@@ -2,6 +2,7 @@
 server:
   port: 7474
 
+
 # JACKSON
 spring:
   application:
@@ -102,5 +103,7 @@ encryption-decryption:
     unsubscribe: TaO5T01R9BXt2yYS
 
 und:
+  url:
+    event: http://userndot.com/event
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@und.com
