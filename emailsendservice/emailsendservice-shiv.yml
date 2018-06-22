@@ -59,7 +59,7 @@ spring:
       test-on-borrow: true
   data:
     mongodb:
-      database: eventdb
+      database: shiv
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
