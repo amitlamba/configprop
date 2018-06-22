@@ -62,7 +62,7 @@ spring:
 
   data:
     mongodb:
-      database: shiv
+      database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
