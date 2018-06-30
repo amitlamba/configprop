@@ -106,5 +106,10 @@ encryption-decryption:
     unsubscribe: TaO5T01R9BXt2yYS
 
 und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
   auth-url: http://nestros.com:8090/auth
   from-email: shiv@userndot.com

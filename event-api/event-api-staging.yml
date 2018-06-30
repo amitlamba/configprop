@@ -101,3 +101,12 @@ logging:
     com:
       und: info
   file: /home/shiv/hd2/undlog/staging/event-api/und-event-api.log
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@userndot.com

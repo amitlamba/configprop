@@ -96,3 +96,11 @@ logging:
       und: info
   file: /home/shiv/hd2/undlog/staging/client-panel/und-client-panel.log
 
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@userndot.com
