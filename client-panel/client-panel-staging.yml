@@ -61,7 +61,8 @@ spring:
       database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
-
+  flyway:
+      placeholder-replacement: false
 
 
 security:
