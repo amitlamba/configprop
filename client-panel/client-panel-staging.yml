@@ -95,7 +95,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/staging/client-panel/und-client-panel.log
+  file: log/staging/und-client-panel.log
 
 und:
   system:
