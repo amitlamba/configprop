@@ -1,7 +1,14 @@
+# config context path to "/" by setting an empty string
 server:
-  port: 5454
+  port: 7474
 
+
+# JACKSON
 spring:
+  application:
+    name: emailsendservice
+  thymeleaf:
+    cache: false
   jackson:
     serialization:
       INDENT_OUTPUT: true
@@ -11,40 +18,35 @@ spring:
           binder:
             brokers: ${KAFKA_IP}
             defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
+            zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
-            #producer-configuration:
         bindings:
-          inEvent:
-            group: inEvent
-            destination: event
-          outEvent:
-            group: outEvent
-            destination: event
-          inEventUser:
-            group: inEventUser
-            destination: eventUser
-          outEventUser:
-            group: outEventUser
-            destination: eventUser
-          inProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfile
-          outProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfile
-          inTrackEvent:
-            group: inTrackEvent
-            destination: trackEvent
-          outTrackEvent:
-            group: outTrackEvent
-            destination: trackEvent
-          inEmailRead:
-            group: inEmailRead
-            destination: emailRead
-          outEmailRead:
-            group: outEmailRead
-            destination: emailRead
+          emailEventSend:
+            group: emailEventGroup
+            destination: emailEvent
+          clientEmailReceive:
+            group: clientEmailReceiveGroup
+            destination: clientEmail
+          clickTrackEventReceive:
+            group: clickTrackEventGroup
+            destination: clickTrackEvent
+          EmailUpdateReceive:
+            group: EmailUpdateReceiveGroup
+            destination: EmailUpdate
+          campaignTriggerReceive:
+            group: campaignTriggerReceive
+            destination: campaignTrigger
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
@@ -55,16 +57,15 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-
   data:
     mongodb:
-      database: eventdb
+      database: shiv
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
 security:
   header:
-    token: Authorization
+    token: authorization
     username: UserName
   secret: mySecret
   expiration: 604800
@@ -76,7 +77,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /email-service/health
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -92,7 +93,12 @@ logging:
       hibernate: info
     com:
       und: info
-  file: ${HOME}/log/und-event-api.log
+  file: ${HOME}/log/und-emailsendservice.log
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
 
 und:
   system:

@@ -1,32 +1,46 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9595
+  port: 6363
   contextPath:
 
 # JACKSON
 spring:
   application:
-    name: auth-service
-  thymeleaf:
-    cache: false
+    name: und-scheduler
   jackson:
     serialization:
-      INDENT_OUTPUT: true
+      write-dates-as-timestamps: false
   cloud:
       stream:
         kafka:
           binder:
             brokers: ${KAFKA_IP}
             defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
+            #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            #producer-configuration:
         bindings:
-          clientEmailSend:
-            group: clientEmailSendGroup
-            destination: clientEmail
+          scheduleJobReceive:
+            group: scheduleJobReceive
+            destination: scheduleJob
+          campaignTriggerSend:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
+          scheduleJobAckSend:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
 
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+  jpa:
+    hibernate:
+      ddl-auto: none
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
@@ -35,10 +49,6 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-
-  redis:
-    host: ${REDIS_IP}
-    port: ${REDIS_PORT}
 
 security:
   header:
@@ -49,13 +59,12 @@ security:
   route:
     authentication:
       path: auth
-      userdetail: userdetail
-      validate: auth/validate
+      refresh: refresh
 
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /application/health
+    health-check-url-path: /scheduler/health
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -71,13 +80,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: ${HOME}/log/und-auth-service.log
+  file: ${HOME}/log/und-scheduler.log
 
-und:
-  system:
-    user:
-      token: jasdghajskdhg
-  url:
-    event: http://userndot.com/event
-  auth-url: http://userndot.com/auth
-  from-email: admin@userndot.com
+encrypt:
+  key: ${ENCRYPT_KEY}

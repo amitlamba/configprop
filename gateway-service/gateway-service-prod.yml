@@ -1,0 +1,41 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: gateway-service
+
+zuul:
+  routes:
+    auth-service:
+      path: /auth/**
+      sensitiveHeaders:
+    client-panel:
+      path: /client/**
+      sensitiveHeaders:
+    event-api:
+      path: /event/**
+      sensitiveHeaders:
+    und-scheduler:
+      path: /scheduler/**
+      sensitiveHeaders:
+    emailsendservice:
+      path: /email/**
+      sensitiveHeaders:
+    zipkin-service:
+      path: /zipkin/**
+      sensitiveHeaders:
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+encrypt:
+  key: ${ENCRYPT_KEY}
