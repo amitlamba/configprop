@@ -66,6 +66,16 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
 security:
   header:
     token: Authorization

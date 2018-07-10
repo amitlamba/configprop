@@ -37,3 +37,4 @@ eureka:
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
+

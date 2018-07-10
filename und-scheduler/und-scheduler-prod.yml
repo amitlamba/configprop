@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
-  contextPath:
 
 # JACKSON
 spring:
@@ -9,26 +8,27 @@ spring:
     name: und-scheduler
   jackson:
     serialization:
+      INDENT_OUTPUT: true
       write-dates-as-timestamps: false
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            #producer-configuration:
-        bindings:
-          scheduleJobReceive:
-            group: scheduleJobReceive
-            destination: scheduleJob
-          campaignTriggerSend:
-            group: campaignTriggerGroup
-            destination: campaignTrigger
-          scheduleJobAckSend:
-            group: scheduleJobAckGroup
-            destination: scheduleJobAck
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #producer-configuration:
+      bindings:
+        scheduleJobReceive:
+          group: scheduleJobReceive
+          destination: scheduleJob
+        campaignTriggerSend:
+          group: campaignTriggerGroup
+          destination: campaignTrigger
+        scheduleJobAckSend:
+          group: scheduleJobAckGroup
+          destination: scheduleJobAck
 
   quartz:
     job-store-type: jdbc
@@ -49,6 +49,20 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+using:
+  spring:
+    schedulerFactory: true
 
 security:
   header:
@@ -82,5 +96,3 @@ logging:
       und: info
   file: ${HOME}/log/und-scheduler.log
 
-encrypt:
-  key: ${ENCRYPT_KEY}

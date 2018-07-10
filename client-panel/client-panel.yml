@@ -60,7 +60,18 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
+  flyway:
+    placeholder-replacement: false
 
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
 
 security:
   header:

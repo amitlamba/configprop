@@ -9,6 +9,7 @@ spring:
     name: und-scheduler
   jackson:
     serialization:
+      INDENT_OUTPUT: true
       write-dates-as-timestamps: false
   cloud:
       stream:
@@ -49,6 +50,20 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+using:
+  spring:
+    schedulerFactory: true
 
 security:
   header:

@@ -70,6 +70,8 @@ spring:
   sleuth:
     sampler:
       probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
 
 eureka:
   instance:
