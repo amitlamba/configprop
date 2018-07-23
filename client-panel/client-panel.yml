@@ -11,6 +11,12 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
+  cache:
+    redis:
+      use-key-prefix: true
   cloud:
       stream:
         kafka:
