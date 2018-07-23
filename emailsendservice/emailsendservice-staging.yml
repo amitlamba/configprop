@@ -12,6 +12,12 @@ spring:
     name: emailsendservice
   thymeleaf:
     cache: false
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
+  cache:
+    redis:
+      use-key-prefix: true
   jackson:
     serialization:
       INDENT_OUTPUT: true
