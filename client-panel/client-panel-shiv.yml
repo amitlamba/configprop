@@ -8,6 +8,13 @@ spring:
     name: client-panel
   thymeleaf:
     cache: false
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
+  cache:
+    redis:
+      use-key-prefix: true
+    type: redis
   jackson:
     serialization:
       INDENT_OUTPUT: true
