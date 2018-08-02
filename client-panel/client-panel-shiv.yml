@@ -26,6 +26,9 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            auto-create-topics: true
+            min-partition-count: 1
+            replication-factor: 1
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
@@ -80,18 +83,27 @@ spring:
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
 
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /client-panel/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
     region: desktop
     service-url:
       defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
-
-
 
 logging:
   level:
@@ -119,19 +131,6 @@ feign:
         errorDecoder: com.und.feign.AuthFeignErrorDecoder
 
 
-
-
-security:
-  header:
-    token: Authorization
-    username: UserName
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
-
 und:
   system:
     user:
@@ -139,4 +138,4 @@ und:
   url:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8080/auth
-  from-email: shiv@und.com
+  from-email: shiv@userndot.com
