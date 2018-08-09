@@ -82,3 +82,13 @@ und:
     clientpanelui: https://userndot.com
   auth-url: https://userndot.com/auth
   from-email: admin@userndot.com
+
+google:
+  recaptcha:
+    key:
+      site: 6Lcv4FsUAAAAAL1CEPzpEjUIxiDL93UWR2in1h1x
+      secret: 6Lcv4FsUAAAAAMK62khPw_aUoUf3RvY6n7HmES6w
+
+system:
+  captcha:
+    enabled: true
