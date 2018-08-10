@@ -32,9 +32,6 @@ spring:
           scheduleJobReceive:
             group: scheduleJobReceive
             destination: scheduleJob
-          campaignTriggerSend:
-            group: campaignTriggerGroup
-            destination: campaignTrigger
           scheduleJobAckSend:
             group: scheduleJobAckGroup
             destination: scheduleJobAck
