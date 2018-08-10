@@ -8,13 +8,6 @@ spring:
     name: client-panel
   thymeleaf:
     cache: false
-  redis:
-    host: ${REDIS_IP}
-    port: ${REDIS_PORT}
-  cache:
-    redis:
-      use-key-prefix: true
-    type: redis
   jackson:
     serialization:
       INDENT_OUTPUT: true
@@ -39,8 +32,6 @@ spring:
           clientEmailSend:
             group: clientEmailSendGroup
             destination: clientEmailshiv
-  kafka:
-    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -82,6 +73,14 @@ spring:
       probability: 1
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
+    database: 1
+  cache:
+    type: redis
+    redis:
+      use-key-prefix: true
 
 security:
   header:
