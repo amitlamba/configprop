@@ -131,5 +131,6 @@ und:
       token: jasdghajskdhg
   url:
     event: http://userndot.com/event
-  auth-url: http://userndot.com/auth
-  from-email: admin@userndot.com
+    client: http://userndot.com/client
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@userndot.com
