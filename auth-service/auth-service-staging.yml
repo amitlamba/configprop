@@ -72,7 +72,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/staging/auth-service/und-auth-service.log
+  file: log/und-auth-service.log
 
 und:
   system:

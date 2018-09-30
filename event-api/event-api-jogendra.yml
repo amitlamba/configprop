@@ -1,0 +1,122 @@
+server:
+  port: 5464
+
+und:
+  url:
+    event: http://userndot.com/event
+
+spring:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            #zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+            #producer-configuration:
+        bindings:
+          inEvent:
+            group: inEvent
+            destination: eventStaging
+          outEvent:
+            group: outEvent
+            destination: eventStaging
+          inEventUser:
+            group: inEventUser
+            destination: eventUserStaging
+          outEventUser:
+            group: outEventUser
+            destination: eventUserStaging
+          inProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfileStaging
+          outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfileStaging
+          inTrackEvent:
+            group: inTrackEvent
+            destination: trackEventStaging
+          outTrackEvent:
+            group: outTrackEvent
+            destination: trackEventStaging
+          inEmailRead:
+            group: inEmailRead
+            destination: emailReadStaging
+          outEmailRead:
+            group: outEmailRead
+            destination: emailReadStaging
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  data:
+    mongodb:
+      database: eventdbstaging
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: log/und-event-api.log
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@userndot.com
