@@ -42,6 +42,10 @@ spring:
           campaignTriggerReceive:
             group: campaignTriggerReceive
             destination: campaignTriggershiv
+          emailFailureEventSend:
+            group: scheduleJobpauseGroup
+            destination: emailFailureEventeshiv
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -126,3 +130,9 @@ und:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@und.com
+  lambda:
+    sms:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accesskey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: exotel
