@@ -150,6 +150,6 @@ und:
   lambda:
     funnel:
       secretKey: eMoCdR+eMoCdR+oCqwZEpbtnKAQZLWl0JjQHKPAETLSKmg4
-      accesskey: AKIAIFFDPORQ4VDJTTJQ
+      accessKey: AKIAIFFDPORQ4VDJTTJQ
       region : us-east-1
       functionName: FunnelData

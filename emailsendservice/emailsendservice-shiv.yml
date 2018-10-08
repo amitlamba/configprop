@@ -133,6 +133,6 @@ und:
   lambda:
     sms:
       secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
-      accesskey: AKIAIEEV7Q6MG5DLL52Q
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
       region : ap-south-1
       functionName: exotel
