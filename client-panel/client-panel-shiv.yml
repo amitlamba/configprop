@@ -53,7 +53,7 @@ spring:
 # Because detection is disabled you have to set correct dialect by hand.
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
