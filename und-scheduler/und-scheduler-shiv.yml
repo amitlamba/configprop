@@ -99,3 +99,17 @@ logging:
 
 encrypt:
   key: UserNDot@18
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8080/auth
+  from-email: shiv@und.com
