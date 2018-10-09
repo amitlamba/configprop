@@ -116,7 +116,7 @@ logging:
         mongodb:
           core:
             MongoTemplate: DEBUG
-  file: log/und-client-panel.log
+  file: ${HOME}/log/staging/und-client-panel.log
 
 
 
