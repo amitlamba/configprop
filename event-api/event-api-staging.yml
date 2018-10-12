@@ -110,7 +110,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/staging/event-api/und-event-api.log
+  file: ${HOME}/log/staging/und-event-api.log
 
 und:
   system:

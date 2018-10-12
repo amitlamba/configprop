@@ -90,4 +90,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: /home/shiv/hd2/undlog/staging/scheduler/und-scheduler.log
+  file: ${HOME}/log/staging/und-scheduler.log
