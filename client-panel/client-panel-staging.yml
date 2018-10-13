@@ -139,3 +139,9 @@ und:
     client: http://userndot.com/client
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@userndot.com
+  lambda:
+    funnel:
+      secretKey: eMoCdR+eMoCdR+oCqwZEpbtnKAQZLWl0JjQHKPAETLSKmg4
+      accessKey: AKIAIFFDPORQ4VDJTTJQ
+      region : us-east-1
+      functionName: FunnelData
