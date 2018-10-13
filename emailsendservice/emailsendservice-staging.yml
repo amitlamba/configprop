@@ -129,3 +129,9 @@ und:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8090/auth
   from-email: shiv@userndot.com
+  lambda:
+    sms:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: exotel
