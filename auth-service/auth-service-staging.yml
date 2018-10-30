@@ -72,7 +72,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-auth-service.log
+  file: ${HOME}/log/staging/und-auth-service.log
 
 und:
   system:
@@ -92,4 +92,4 @@ google:
 
 system:
   captcha:
-    enabled: true
+    enabled: false
