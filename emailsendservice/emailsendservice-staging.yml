@@ -45,6 +45,9 @@ spring:
           campaignTriggerReceive:
             group: campaignTriggerReceive
             destination: campaignTriggerStaging
+          fcmEventSend:
+            group: fcmMessageGroup
+            destination: fcmMessageStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
