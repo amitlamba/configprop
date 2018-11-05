@@ -32,6 +32,9 @@ spring:
           clientEmailSend:
             group: clientEmailSendGroup
             destination: clientEmailStaging
+          fcmFailureEventReceive:
+            group: schudleJobPauseGroup
+            destination: fcmEventFailure
   mvc:
     view:
       prefix: /WEB-INF/views/

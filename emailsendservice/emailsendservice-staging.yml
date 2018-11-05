@@ -48,6 +48,9 @@ spring:
           fcmEventSend:
             group: fcmMessageGroup
             destination: fcmMessageStaging
+          fcmFailureEventSend:
+            group: schudleJobPauseGroup
+            destination: fcmEventFailure
   mvc:
     view:
       prefix: /WEB-INF/views/
