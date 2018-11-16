@@ -144,7 +144,7 @@ und:
   from-email: shiv@userndot.com
   lambda:
     funnel:
-      secretKey: eMoCdR+eMoCdR+oCqwZEpbtnKAQZLWl0JjQHKPAETLSKmg4
-      accessKey: AKIAIFFDPORQ4VDJTTJQ
-      region : us-east-1
+      secretKey: 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
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
       functionName: FunnelData
