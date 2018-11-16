@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9595
-  contextPath:
+  port: 9605
 
 # JACKSON
 spring:
@@ -23,11 +22,10 @@ spring:
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmailshiv
-
+            destination: clientEmailStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -40,6 +38,7 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
+    database: 1
 
 security:
   header:
@@ -56,13 +55,13 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /auth-service/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
 
 logging:
   level:
@@ -72,7 +71,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-auth-service.log
+  file: ${HOME}/log/staging/und-auth-service.log
 
 und:
   system:
@@ -82,7 +81,7 @@ und:
     event: http://userndot.com/event
     clientpanelui: http://userndot.com
   auth-url: http://nestros.com:8080/auth
-  from-email: shiv@und.com
+  from-email: shiv@userndot.com
 
 google:
   recaptcha:
