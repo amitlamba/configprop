@@ -105,7 +105,7 @@ eureka:
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
 
 logging:
   level:
