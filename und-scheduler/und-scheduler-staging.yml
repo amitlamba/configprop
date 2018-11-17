@@ -27,9 +27,6 @@ spring:
           scheduleJobAckSend:
             group: scheduleJobAckGroup
             destination: scheduleJobAckStaging
-          outJobForLiveSegmentCheck:
-            group: outLiveSegmentJob
-            destination: liveSegmentJobCheck
 
   mvc:
     view:

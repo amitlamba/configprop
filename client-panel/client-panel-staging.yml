@@ -35,9 +35,6 @@ spring:
           fcmFailureEventReceive:
             group: schudleJobPauseGroup
             destination: fcmEventFailure
-          inJobForLiveSegmentCheck:
-            group: inLiveSegmentJob
-            destination: liveSegmentJobCheck
   mvc:
     view:
       prefix: /WEB-INF/views/
