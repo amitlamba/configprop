@@ -42,6 +42,12 @@ spring:
           campaignTriggerReceive:
             group: campaignTriggerReceive
             destination: campaignTrigger
+          fcmEventSend:
+            group: fcmMessageGroup
+            destination: fcmMessage
+          fcmFailureEventSend:
+            group: fcmFailureEventGroup
+            destination: fcmEventFailure
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -65,7 +71,7 @@ spring:
       test-on-borrow: true
   data:
     mongodb:
-      database: shiv
+      database: eventdb
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
@@ -121,6 +127,12 @@ und:
     user:
       token: jasdghajskdhg
   url:
-    event: http://userndot.com/event
-  auth-url: http://userndot.com/auth
+    event: https://userndot.com/event
+  auth-url: https://userndot.com/auth
   from-email: admin@userndot.com
+  lambda:
+    sms:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: exotel

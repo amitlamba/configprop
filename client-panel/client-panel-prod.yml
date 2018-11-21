@@ -29,15 +29,18 @@ spring:
             min-partition-count: 1
             replication-factor: 1
         bindings:
-          scheduleJobReceive:
-            group: scheduleJobReceive
+          scheduleJobSend:
+            group: scheduleJobGroup
             destination: scheduleJob
-          scheduleJobAckSend:
+          scheduleJobAckReceive:
             group: scheduleJobAckGroup
             destination: scheduleJobAck
           clientEmailSend:
             group: clientEmailSendGroup
             destination: clientEmail
+          fcmFailureEventReceive:
+            group: fcmFailureEventGroup
+            destination: fcmEventFailure
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -45,7 +48,7 @@ spring:
 # Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
 # Because detection is disabled you have to set correct dialect by hand.
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
       hibernate:
@@ -130,7 +133,13 @@ und:
     user:
       token: jasdghajskdhg
   url:
-    event: http://userndot.com/event
-    client: http://userndot.com/client
-  auth-url: http://nestros.com:8080/auth
-  from-email: shiv@userndot.com
+    event: https://userndot.com/event
+    client: https://userndot.com/client
+  auth-url: https://userndot.com/auth
+  from-email: admin@userndot.com
+  lambda:
+    funnel:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: FunnelData

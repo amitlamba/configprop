@@ -42,6 +42,9 @@ spring:
           campaignTriggerReceive:
             group: campaignTriggerReceive
             destination: campaignTriggershiv
+          fcmEventSend:
+            group: fcmMessageGroup
+            destination: fcmMessageshiv
           emailFailureEventSend:
             group: scheduleJobpauseGroup
             destination: emailFailureEventeshiv

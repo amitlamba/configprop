@@ -10,35 +10,24 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-        bindings:
-          scheduleJobReceive:
-            group: scheduleJobReceive
-            destination: scheduleJobStaging
-          campaignTriggerSend:
-            group: campaignTriggerGroup
-            destination: campaignTriggerStaging
-          scheduleJobAckSend:
-            group: scheduleJobAckGroup
-            destination: scheduleJobAckStaging
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+      bindings:
+        scheduleJobReceive:
+          group: scheduleJobReceive
+          destination: scheduleJobStaging
+        campaignTriggerSend:
+          group: campaignTriggerGroup
+          destination: campaignTriggerStaging
+        scheduleJobAckSend:
+          group: scheduleJobAckGroup
+          destination: scheduleJobAckStaging
 
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
-
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    properties:
-      hibernate:
-        temp:
-          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
     driver-class-name: org.postgresql.Driver

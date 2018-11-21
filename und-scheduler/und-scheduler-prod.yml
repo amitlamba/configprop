@@ -9,7 +9,6 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-      write-dates-as-timestamps: false
   cloud:
     stream:
       kafka:
@@ -30,15 +29,6 @@ spring:
           group: scheduleJobAckGroup
           destination: scheduleJobAck
 
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
-    properties:
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-  jpa:
-    hibernate:
-      ddl-auto: none
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
     driver-class-name: org.postgresql.Driver
@@ -59,10 +49,6 @@ spring:
       probability: 1
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
-
-using:
-  spring:
-    schedulerFactory: true
 
 security:
   header:
