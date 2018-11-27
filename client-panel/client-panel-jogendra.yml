@@ -47,7 +47,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/jogendra
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
