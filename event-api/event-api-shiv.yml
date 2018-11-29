@@ -1,5 +1,9 @@
 server:
-  port: 5454
+  port: 5464
+
+und:
+  url:
+    event: http://userndot.com/event
 
 spring:
   jackson:
@@ -17,39 +21,42 @@ spring:
         bindings:
           inEvent:
             group: inEvent
-            destination: eventshiv
+            destination: eventStaging
           outEvent:
             group: outEvent
-            destination: eventshiv
+            destination: eventStaging
           inEventUser:
             group: inEventUser
-            destination: eventUsershiv
+            destination: eventUserStaging
           outEventUser:
             group: outEventUser
-            destination: eventUsershiv
+            destination: eventUserStaging
           inProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfileshiv
+              destination: processUserProfileStaging
           outProcessEventUserProfile:
               group: processEventUserProfile
-              destination: processUserProfileshiv
+              destination: processUserProfileStaging
           inTrackEvent:
             group: inTrackEvent
-            destination: trackEventshiv
+            destination: trackEventStaging
           outTrackEvent:
             group: outTrackEvent
-            destination: trackEventshiv
+            destination: trackEventStaging
           inEmailRead:
             group: inEmailRead
-            destination: emailReadshiv
+            destination: emailReadStaging
           outEmailRead:
             group: outEmailRead
-            destination: emailReadshiv
-        #binders:
-
-
+            destination: emailReadStaging
+          inNotificationRead:
+            group: inNotification
+            destination: trackNotification
+          outNotificationRead:
+            group: outNotification
+            destination: trackNotification
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -61,7 +68,7 @@ spring:
 
   data:
     mongodb:
-      database: shiv
+      database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
@@ -98,7 +105,7 @@ eureka:
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
 
 
 logging:
@@ -109,7 +116,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-event-api.log
+  file: ${HOME}/log/staging/und-event-api.log
 
 und:
   system:
@@ -118,4 +125,4 @@ und:
   url:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8080/auth
-  from-email: shiv@und.com
+  from-email: shiv@userndot.com
