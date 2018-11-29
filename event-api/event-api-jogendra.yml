@@ -49,6 +49,12 @@ spring:
           outEmailRead:
             group: outEmailRead
             destination: emailReadStaging
+          inNotificationRead:
+            group: inNotification
+            destination: trackNotification
+          outNotificationRead:
+            group: outNotification
+            destination: trackNotification
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
@@ -62,7 +68,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdbstaging
+      database: jogendra
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
@@ -110,7 +116,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-event-api.log
+  file: ${HOME}/log/staging/und-event-api.log
 
 und:
   system:

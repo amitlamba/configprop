@@ -109,6 +109,6 @@ und:
     user:
       token: jasdghajskdhg
   url:
-    event: http://userndot.com/event
-  auth-url: http://userndot.com/auth
+    event: https://userndot.com/event
+  auth-url: https://userndot.com/auth
   from-email: admin@userndot.com
