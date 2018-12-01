@@ -68,7 +68,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdbstaging
+      database: jogendra
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
