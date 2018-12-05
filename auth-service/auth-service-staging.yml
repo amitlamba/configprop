@@ -46,7 +46,7 @@ security:
     token: authorization
     username: UserName
   secret: mySecret
-  expiration: 120
+  expiration: 604800
   route:
     authentication:
       path: auth
