@@ -25,16 +25,16 @@ spring:
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
-            destination: scheduleJobStaging
+            destination: scheduleJobShiv
           scheduleJobAckReceive:
             group: scheduleJobAckGroup
-            destination: scheduleJobAckStaging
+            destination: scheduleJobAckShiv
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmailStaging
+            destination: clientEmailShiv
           fcmFailureEventReceive:
             group: fcmFailureEventGroup
-            destination: fcmEventFailureStaging
+            destination: fcmEventFailureShiv
   mvc:
     view:
       prefix: /WEB-INF/views/

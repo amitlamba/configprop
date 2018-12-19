@@ -61,7 +61,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/shiv
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -72,7 +72,7 @@ spring:
       test-on-borrow: true
   data:
     mongodb:
-      database: shiv
+      database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
