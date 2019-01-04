@@ -58,7 +58,7 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /application/health
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
     region: desktop
     service-url:
