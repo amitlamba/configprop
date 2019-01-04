@@ -80,7 +80,7 @@ und:
       token: jasdghajskdhg
   url:
     event: http://userndot.com/event
-    clientpanelui: http://userndot.com
+    clientpanelui: http://userndot.com/auth/
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@userndot.com
 
