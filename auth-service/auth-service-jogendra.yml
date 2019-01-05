@@ -39,7 +39,7 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
-    database: 1
+    database: 2
 
 security:
   header:
@@ -58,7 +58,7 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /application/health
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
     region: desktop
     service-url:
@@ -78,9 +78,6 @@ und:
   system:
     user:
       token: jasdghajskdhg
-  metadata:
-    userProperties: userproperties.json
-    eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
     clientpanelui: http://userndot.com/auth/
