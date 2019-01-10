@@ -30,6 +30,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
+  data:
+    mongodb:
+      database: eventdb
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
     tomcat:
       initial-size: 10
       max-wait: 10000
