@@ -84,7 +84,7 @@ und:
     user:
       token: jasdghajskdhg
   metadata:
-    userProperties: userproperties.json
+    userProperties: /home/shiv/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
