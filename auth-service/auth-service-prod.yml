@@ -99,4 +99,4 @@ google:
 
 system:
   captcha:
-    enabled: true
+    enabled: false
