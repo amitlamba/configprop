@@ -45,6 +45,12 @@ spring:
           outEmailRead:
             group: outEmailRead
             destination: emailRead
+          inNotificationRead:
+            group: inNotification
+            destination: trackNotification
+          outNotificationRead:
+            group: outNotification
+            destination: trackNotification
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver

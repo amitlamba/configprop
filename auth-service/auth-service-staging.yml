@@ -30,6 +30,11 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
+  data:
+    mongodb:
+      database: eventdbstaging
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
     tomcat:
       initial-size: 10
       max-wait: 10000
@@ -79,7 +84,7 @@ und:
     user:
       token: jasdghajskdhg
   metadata:
-    userProperties: userproperties.json
+    userProperties: /home/shiv/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
