@@ -32,7 +32,7 @@ spring:
           destination: scheduleJobAckStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencejogendra
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
