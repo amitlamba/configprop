@@ -33,6 +33,15 @@ spring:
           emailEventSend:
             group: emailEventGroup
             destination: emailEventStaging
+          emailEventReceive:
+            group: emailEventReceive
+            destination: emailEventStaging
+          smsEventSend:
+            group: smsEventGroup
+            destination: smsEventStaging
+          smsEventReceive:
+            group: smsEventReceive
+            destination: smsEventStaging
           clientEmailReceive:
             group: clientEmailReceiveGroup
             destination: clientEmailStaging
@@ -47,6 +56,9 @@ spring:
             destination: campaignTriggerStaging
           fcmEventSend:
             group: fcmMessageGroup
+            destination: fcmMessageStaging
+          fcmEventReceive:
+            group: fcmMessageReceive
             destination: fcmMessageStaging
           fcmFailureEventSend:
             group: fcmFailureEventGroup
