@@ -55,6 +55,13 @@ spring:
           outNotificationRead:
             group: outNotification
             destination: trackNotification
+  jpa:
+      show-sql: false
+      database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+      properties:
+        hibernate:
+          temp:
+            use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
