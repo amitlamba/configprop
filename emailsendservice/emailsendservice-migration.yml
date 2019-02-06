@@ -1,0 +1,155 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 7484
+
+und:
+  url:
+    event: http://userndot.com/event
+
+# JACKSON
+spring:
+  application:
+    name: emailsendservice
+  thymeleaf:
+    cache: false
+  redis:
+    host: ${REDIS_IP}
+    port: ${REDIS_PORT}
+  cache:
+    redis:
+      use-key-prefix: true
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: ${KAFKA_IP}
+            defaultBrokerPort: ${KAFKA_PORT}
+            zkNodes: ${KAFKA_IP}
+            defaultZkPort: 2181
+        bindings:
+          emailEventSend:
+            group: emailEventGroup
+            destination: emailEventStaging
+          emailEventReceive:
+            group: emailEventReceive
+            destination: emailEventStaging
+          smsEventSend:
+            group: smsEventGroup
+            destination: smsEventStaging
+          smsEventReceive:
+            group: smsEventReceive
+            destination: smsEventStaging
+          clientEmailReceive:
+            group: clientEmailReceiveGroup
+            destination: clientEmailStaging
+          clickTrackEventReceive:
+            group: clickTrackEventGroup
+            destination: clickTrackEventStaging
+          EmailUpdateReceive:
+            group: EmailUpdateReceiveGroup
+            destination: EmailUpdateStaging
+          campaignTriggerReceive:
+            group: campaignTriggerReceive
+            destination: campaignTriggerStaging
+          fcmEventSend:
+            group: fcmMessageGroup
+            destination: fcmMessageStaging
+          fcmEventReceive:
+            group: fcmMessageReceive
+            destination: fcmMessageStaging
+          fcmFailureEventSend:
+            group: fcmFailureEventGroup
+            destination: fcmEventFailureStaging
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstagingcopy
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+  data:
+    mongodb:
+      database: eventdbstaging
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+security:
+  header:
+    token: authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /email-service/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
+
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: ${HOME}/log/staging/und-emailsendservice.log
+
+
+encryption-decryption:
+  key:
+    default: DaO1TXt5B0R92Yys
+    unsubscribe: TaO5T01R9BXt2yYS
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: http://userndot.com/event
+  auth-url: http://nestros.com:8090/auth
+  from-email: shiv@userndot.com
+  lambda:
+    sms:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: exotel
