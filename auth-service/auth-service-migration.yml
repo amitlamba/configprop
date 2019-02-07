@@ -83,6 +83,11 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+    from:
+      address: userndot19@gmail.com
   metadata:
     userProperties: /home/shiv/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
