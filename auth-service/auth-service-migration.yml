@@ -89,7 +89,7 @@ und:
     from:
       address: userndot19@gmail.com
   metadata:
-    userProperties: /home/shiv/und/initconfig/userproperties.json
+    userProperties: /home/jogendra/repositories/und/auth-service/src/main/resources/userproperties.json
     eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
