@@ -61,7 +61,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstagingcopy
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -129,6 +129,9 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
   url:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8080/auth
