@@ -23,7 +23,7 @@ spring:
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmailStaging
+            destination: clientEmailMigration
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstagingcopy
@@ -63,7 +63,7 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /application/health
   client:
-    register-with-eureka: true
+    register-with-eureka: false
     fetch-registry: true
     region: desktop
     service-url:
