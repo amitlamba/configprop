@@ -1,6 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9000
+  port: 7484
 
 und:
   url:
