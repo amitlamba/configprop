@@ -1,0 +1,82 @@
+# config context path to "/" by setting an empty string
+server:
+  port: 6373
+
+# JACKSON
+spring:
+  application:
+    name: und-scheduler
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+      bindings:
+        scheduleJobReceive:
+          group: scheduleJobReceive
+          destination: scheduleJobMigration
+        campaignTriggerSend:
+          group: campaignTriggerGroup
+          destination: campaignTriggerMigration
+        scheduleJobAckSend:
+          group: scheduleJobAckGroup
+          destination: scheduleJobAckMigration
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password:  postgres
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+security:
+  header:
+    token: authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: ${HOME}/log/staging/und-scheduler.log

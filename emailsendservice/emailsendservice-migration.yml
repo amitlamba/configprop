@@ -32,37 +32,37 @@ spring:
         bindings:
           emailEventSend:
             group: emailEventGroup
-            destination: emailEventStaging
+            destination: emailEventMigration
           emailEventReceive:
             group: emailEventReceive
-            destination: emailEventStaging
+            destination: emailEventMigration
           smsEventSend:
             group: smsEventGroup
-            destination: smsEventStaging
+            destination: smsEventMigration
           smsEventReceive:
             group: smsEventReceive
-            destination: smsEventStaging
+            destination: smsEventMigration
           clientEmailReceive:
             group: clientEmailReceiveGroup
-            destination: clientEmailStaging
+            destination: clientEmailMigration
           clickTrackEventReceive:
             group: clickTrackEventGroup
-            destination: clickTrackEventStaging
+            destination: clickTrackEventMigration
           EmailUpdateReceive:
             group: EmailUpdateReceiveGroup
-            destination: EmailUpdateStaging
+            destination: EmailUpdateMigration
           campaignTriggerReceive:
             group: campaignTriggerReceive
-            destination: campaignTriggerStaging
+            destination: campaignTriggerMigration
           fcmEventSend:
             group: fcmMessageGroup
-            destination: fcmMessageStaging
+            destination: fcmMessageMigration
           fcmEventReceive:
             group: fcmMessageReceive
-            destination: fcmMessageStaging
+            destination: fcmMessageMigration
           fcmFailureEventSend:
             group: fcmFailureEventGroup
-            destination: fcmEventFailureStaging
+            destination: fcmEventFailureMigration
   mvc:
     view:
       prefix: /WEB-INF/views/
