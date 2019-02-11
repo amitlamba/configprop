@@ -63,6 +63,9 @@ spring:
           fcmFailureEventSend:
             group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
+          emailFailureEventSend:
+            group: emailFailureEventGroup
+            destination: emailFailureEventStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
