@@ -140,6 +140,8 @@ und:
     email:
       setting:
         id: 1
+    from:
+      address: userndot19@gmail.com
   url:
     event: http://userndot.com/event
     client: http://userndot.com/client

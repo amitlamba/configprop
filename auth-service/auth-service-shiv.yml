@@ -85,6 +85,8 @@ und:
     email:
       setting:
         id: 1
+    from:
+      address: userndot19@gmail.com
   metadata:
     userProperties: userproperties.json
     eventMetadata: eventMetadata.json
