@@ -82,6 +82,9 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
   metadata:
     userProperties: userproperties.json
     eventMetadata: eventMetadata.json
