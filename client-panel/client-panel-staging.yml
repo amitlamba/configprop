@@ -35,6 +35,9 @@ spring:
           fcmFailureEventReceive:
             group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
+          emailFailureEventReceive:
+            group: emailFailureEventReceiveGroup
+            destination: emailFailureEventStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
