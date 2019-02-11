@@ -1,6 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9201
+  port: 9191
 
 # JACKSON
 spring:
@@ -77,7 +77,7 @@ spring:
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
   redis:
-    host: ${REDIS_IP}
+    host: nestros2.com
     port: ${REDIS_PORT}
     database: 1
   cache:
