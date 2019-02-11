@@ -41,7 +41,7 @@ spring:
       test-on-borrow: true
 
   redis:
-    host: nestros2.com
+    host: userndot.com
     port: ${REDIS_PORT}
     database: 1
 
