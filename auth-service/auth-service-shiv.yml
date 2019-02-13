@@ -39,6 +39,9 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+    hikari:
+      maximum-pool-size: 2
+      idle-timeout: 10000
 
   redis:
     host: userndot.com
