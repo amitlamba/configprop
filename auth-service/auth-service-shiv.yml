@@ -39,9 +39,12 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+    hikari:
+      maximum-pool-size: 2
+      idle-timeout: 10000
 
   redis:
-    host: nestros2.com
+    host: userndot.com
     port: ${REDIS_PORT}
     database: 1
 
@@ -82,6 +85,11 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+    from:
+      address: userndot19@gmail.com
   metadata:
     userProperties: userproperties.json
     eventMetadata: eventMetadata.json
