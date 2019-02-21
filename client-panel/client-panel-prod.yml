@@ -41,6 +41,9 @@ spring:
           fcmFailureEventReceive:
             group: fcmFailureEventGroup
             destination: fcmEventFailure
+          emailFailureEventReceive:
+            group: emailFailureEventReceiveGroup
+            destination: emailFailureEvent
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -132,6 +135,9 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
   url:
     event: https://userndot.com/event
     client: https://userndot.com/client

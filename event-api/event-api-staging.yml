@@ -1,9 +1,6 @@
 server:
   port: 5464
 
-und:
-  url:
-    event: http://userndot.com/event
 
 spring:
   jackson:
