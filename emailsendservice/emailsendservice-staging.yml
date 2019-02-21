@@ -2,10 +2,6 @@
 server:
   port: 7484
 
-und:
-  url:
-    event: http://userndot.com/event
-
 # JACKSON
 spring:
   application:
@@ -31,16 +27,6 @@ spring:
             defaultZkPort: 2181
         bindings:
           emailEventSend:
-            consumer:
-              maxAttempts: 1
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  commit:
-                    interval:
-                      ms: 5000
             group: emailEventGroup
             destination: emailEventStaging
           emailEventReceive:
