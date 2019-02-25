@@ -32,6 +32,12 @@ spring:
               auto:
                 offset:
                   reset: earliest
+                commit:
+                  interval:
+                    ms: 10000
+              max:
+                poll:
+                  records: 1
         bindings:
           emailEventSend:
 #            consumer:
