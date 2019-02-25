@@ -22,13 +22,13 @@ spring:
             auto-create-topics: true
             min-partition-count: 1
             replication-factor: 1
-            consumer-properties:
-              enable:
-                auto:
-                  commit: true
-              auto:
-                offset:
-                  reset: earliest
+#            consumer-properties:
+#              enable:
+#                auto:
+#                  commit: true
+#              auto:
+#                offset:
+#                  reset: earliest
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
