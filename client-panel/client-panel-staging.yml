@@ -57,6 +57,9 @@ spring:
                 auto:
                   offset:
                     reset: earliest
+                max:
+                  poll:
+                    records: 100
             group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
           emailFailureEventReceive:
