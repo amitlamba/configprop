@@ -34,15 +34,39 @@ spring:
             group: scheduleJobGroup
             destination: scheduleJobStaging
           scheduleJobAckReceive:
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                    offset:
+                      reset: earliest
             group: scheduleJobAckGroup
             destination: scheduleJobAckStaging
           clientEmailSend:
             group: clientEmailSendGroup
             destination: clientEmailStaging
           fcmFailureEventReceive:
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                  offset:
+                    reset: earliest
             group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
           emailFailureEventReceive:
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                  offset:
+                    reset: earliest
             group: emailFailureEventReceiveGroup
             destination: emailFailureEventStaging
   mvc:
