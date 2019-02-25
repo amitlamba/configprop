@@ -49,6 +49,7 @@ spring:
             destination: clientEmailStaging
           fcmFailureEventReceive:
             consumer:
+              autoCommitOffset: true
               configuration:
                 enable:
                   auto:
