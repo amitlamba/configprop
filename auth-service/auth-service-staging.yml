@@ -20,6 +20,13 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            consumer-properties:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup

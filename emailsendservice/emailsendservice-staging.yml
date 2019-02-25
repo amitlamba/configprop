@@ -25,8 +25,25 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            consumer-properties:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
         bindings:
           emailEventSend:
+#            consumer:
+#              maxAttempts: 1
+#              configuration:
+#                enable:
+#                  auto:
+#                    commit: true
+#                auto:
+#                  commit:
+#                    interval:
+#                      ms: 5000
             group: emailEventGroup
             destination: emailEventStaging
           emailEventReceive:
