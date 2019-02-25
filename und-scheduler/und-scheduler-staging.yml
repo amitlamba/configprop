@@ -26,6 +26,14 @@ spring:
                 reset: earliest
       bindings:
         scheduleJobReceive:
+          consumer:
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
           group: scheduleJobReceive
           destination: scheduleJobStaging
         campaignTriggerSend:
