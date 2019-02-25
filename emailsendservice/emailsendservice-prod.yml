@@ -30,6 +30,9 @@ spring:
           emailEventSend:
             group: emailEventGroup
             destination: emailEvent
+          emailEventReceive:
+            group: emailEventReceive
+            destination: emailEvent
           clientEmailReceive:
             group: clientEmailReceiveGroup
             destination: clientEmail

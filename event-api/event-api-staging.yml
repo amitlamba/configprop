@@ -15,6 +15,13 @@ spring:
             #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
             #producer-configuration:
+            consumer-properties:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
         bindings:
           inEvent:
             group: inEvent
