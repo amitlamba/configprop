@@ -25,7 +25,7 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
-            consumer-properties:
+            configuration:
               enable:
                 auto:
                   commit: true
@@ -35,111 +35,109 @@ spring:
                 commit:
                   interval:
                     ms: 10000
-              max:
-                poll:
-                  records: 100
+          bindings:
+            emailEventSend:
+              group: emailEventGroup
+              destination: emailEventStaging
+            emailEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: emailEventReceive
+              group: emailEventReceive
+              destination: emailEventStaging
+            smsEventSend:
+              group: smsEventGroup
+              destination: smsEventStaging
+            smsEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 2
+                  group:
+                    id: smsEventReceive
+              group: smsEventReceive
+              destination: smsEventStaging
+            clientEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 3
+                  group:
+                    id: clientEmailReceiveGroup
+              group: clientEmailReceiveGroup
+              destination: clientEmailStaging
+            clickTrackEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 4
+                  group:
+                    id: clickTrackEventGroup
+              group: clickTrackEventGroup
+              destination: clickTrackEventStaging
+            EmailUpdateReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 5
+                  group:
+                    id: EmailUpdateReceiveGroup
+              group: EmailUpdateReceiveGroup
+              destination: EmailUpdateStaging
+            campaignTriggerReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 6
+                  group:
+                    id: campaignTriggerReceive
+              group: campaignTriggerReceive
+              destination: campaignTriggerStaging
+            fcmEventSend:
+              group: fcmMessageGroup
+              destination: fcmMessageStaging
+            fcmEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: fcmMessageReceive
+              group: fcmMessageReceive
+              destination: fcmMessageStaging
+            fcmFailureEventSend:
+              group: fcmFailureEventGroup
+              destination: fcmEventFailureStaging
+            emailFailureEventSend:
+              group: emailFailureEventGroup
+              destination: emailFailureEventStaging
         bindings:
           emailEventSend:
-#            consumer:
-#              maxAttempts: 1
-#              configuration:
-#                enable:
-#                  auto:
-#                    commit: true
-#                auto:
-#                  commit:
-#                    interval:
-#                      ms: 5000
-            group: emailEventGroup
             destination: emailEventStaging
           emailEventReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: emailEventReceive
             destination: emailEventStaging
           smsEventSend:
-            group: smsEventGroup
             destination: smsEventStaging
           smsEventReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: smsEventReceive
             destination: smsEventStaging
           clientEmailReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: clientEmailReceiveGroup
             destination: clientEmailStaging
           clickTrackEventReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: clickTrackEventGroup
             destination: clickTrackEventStaging
           EmailUpdateReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: EmailUpdateReceiveGroup
             destination: EmailUpdateStaging
           campaignTriggerReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: campaignTriggerReceive
             destination: campaignTriggerStaging
           fcmEventSend:
-            group: fcmMessageGroup
             destination: fcmMessageStaging
           fcmEventReceive:
-            consumer:
-              configuration:
-                enable:
-                  auto:
-                    commit: true
-                auto:
-                  offset:
-                    reset: earliest
-            group: fcmMessageReceive
             destination: fcmMessageStaging
           fcmFailureEventSend:
-            group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
           emailFailureEventSend:
-            group: emailFailureEventGroup
             destination: emailFailureEventStaging
   mvc:
     view:
