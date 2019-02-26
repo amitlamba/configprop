@@ -17,30 +17,35 @@ spring:
           defaultBrokerPort: ${KAFKA_PORT}
           #zkNodes: ${KAFKA_IP}
           defaultZkPort: 2181
-          consumer-properties:
+          configuration:
             enable:
               auto:
                 commit: true
             auto:
               offset:
                 reset: earliest
+        bindings:
+          scheduleJobReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: scheduleJobReceive
+            group: scheduleJobReceive
+            destination: scheduleJobStaging
+          campaignTriggerSend:
+            group: campaignTriggerGroup
+            destination: campaignTriggerStaging
+          scheduleJobAckSend:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAckStaging
       bindings:
         scheduleJobReceive:
-          consumer:
-            configuration:
-              enable:
-                auto:
-                  commit: true
-              auto:
-                offset:
-                  reset: earliest
-          group: scheduleJobReceive
           destination: scheduleJobStaging
         campaignTriggerSend:
-          group: campaignTriggerGroup
           destination: campaignTriggerStaging
         scheduleJobAckSend:
-          group: scheduleJobAckGroup
           destination: scheduleJobAckStaging
 
   datasource:
