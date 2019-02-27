@@ -103,17 +103,26 @@ spring:
               consumer:
                 configuration:
                   client:
-                    id: 1
+                    id: 7
                   group:
                     id: fcmMessageReceive
-              group: fcmMessageReceive
-              destination: fcmMessageStaging
+#              group: fcmMessageReceive
+#              destination: fcmMessageStaging
             fcmFailureEventSend:
               group: fcmFailureEventGroup
               destination: fcmEventFailureStaging
             emailFailureEventSend:
               group: emailFailureEventGroup
               destination: emailFailureEventStaging
+            VerificationEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 7
+                  group:
+                    id: verificationEmailReceive
+              group: verificationEmailReceive
+              destination: verificationEmailStaging
         bindings:
           emailEventSend:
             destination: emailEventStaging
@@ -139,6 +148,8 @@ spring:
             destination: fcmEventFailureStaging
           emailFailureEventSend:
             destination: emailFailureEventStaging
+          VerificationEmailReceive:
+            destination: verificationEmailStaging
   mvc:
     view:
       prefix: /WEB-INF/views/

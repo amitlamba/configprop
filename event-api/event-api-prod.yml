@@ -14,6 +14,80 @@ spring:
             #zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
             #producer-configuration:
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+          bindings:
+            inEvent:
+              consumer:
+                client:
+                  id: 1
+                group:
+                  id: inEvent
+              group: inEvent
+              destination: event
+            outEvent:
+              group: outEvent
+              destination: event
+            inEventUser:
+              consumer:
+                client:
+                  id: 2
+                group:
+                  id: inEventUser
+              group: inEventUser
+              destination: eventUser
+            outEventUser:
+              group: outEventUser
+              destination: eventUser
+            inProcessEventUserProfile:
+              consumer:
+                client:
+                  id: 3
+                group:
+                  id: processEventUserProfile
+              group: processEventUserProfile
+              destination: processUserProfile
+            outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfile
+            inTrackEvent:
+              consumer:
+                client:
+                  id: 4
+                group:
+                  id: inTrackEvent
+              group: inTrackEvent
+              destination: trackEvent
+            outTrackEvent:
+              group: outTrackEvent
+              destination: trackEvent
+            inEmailRead:
+              consumer:
+                client:
+                  id: 5
+                group:
+                  id: inEmailRead
+              group: inEmailRead
+              destination: emailRead
+            outEmailRead:
+              group: outEmailRead
+              destination: emailRead
+            inNotificationRead:
+              consumer:
+                client:
+                  id: 6
+                group:
+                  id: inNotification
+              group: inNotification
+              destination: trackNotification
+            outNotificationRead:
+              group: outNotification
+              destination: trackNotification
         bindings:
           inEvent:
             group: inEvent

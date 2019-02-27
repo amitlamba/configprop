@@ -18,6 +18,29 @@ spring:
           #zkNodes: ${KAFKA_IP}
           defaultZkPort: 2181
           #producer-configuration:
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
+        bindings:
+          scheduleJobReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: scheduleJobReceive
+            group: scheduleJobReceive
+            destination: scheduleJob
+          campaignTriggerSend:
+            group: campaignTriggerGroup
+            destination: campaignTrigger
+          scheduleJobAckSend:
+            group: scheduleJobAckGroup
+            destination: scheduleJobAck
       bindings:
         scheduleJobReceive:
           group: scheduleJobReceive
