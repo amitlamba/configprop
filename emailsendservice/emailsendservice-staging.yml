@@ -32,11 +32,20 @@ spring:
               auto:
                 offset:
                   reset: earliest
+#                  This property effect performance.
                 commit:
                   interval:
-                    ms: 10000
+                    ms: 5000  #default value
+              max:
+                poll:
+                  interval:
+                    ms: 300000  # default value
           bindings:
             emailEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
               group: emailEventGroup
               destination: emailEventStaging
             emailEventReceive:
@@ -49,6 +58,10 @@ spring:
               group: emailEventReceive
               destination: emailEventStaging
             smsEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 2
               group: smsEventGroup
               destination: smsEventStaging
             smsEventReceive:
@@ -97,6 +110,10 @@ spring:
               group: campaignTriggerReceive
               destination: campaignTriggerStaging
             fcmEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 3
               group: fcmMessageGroup
               destination: fcmMessageStaging
             fcmEventReceive:
@@ -109,9 +126,17 @@ spring:
 #              group: fcmMessageReceive
 #              destination: fcmMessageStaging
             fcmFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 4
               group: fcmFailureEventGroup
               destination: fcmEventFailureStaging
             emailFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 5
               group: emailFailureEventGroup
               destination: emailFailureEventStaging
             VerificationEmailReceive:

@@ -31,6 +31,10 @@ spring:
                 reset: earliest
         bindings:
           scheduleJobSend:
+            producer:
+              configuration:
+                client:
+                  id: 1
             group: scheduleJobGroup
             destination: scheduleJobStaging
           scheduleJobAckReceive:
@@ -49,6 +53,10 @@ spring:
             group: scheduleJobAckGroup
             destination: scheduleJobAckStaging
           clientEmailSend:
+            producer:
+              configuration:
+                client:
+                  id: 2
             group: clientEmailSendGroup
             destination: clientEmailStaging
           fcmFailureEventReceive:
