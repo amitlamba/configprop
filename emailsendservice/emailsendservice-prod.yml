@@ -26,6 +26,124 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+                commit:
+                  interval:
+                    ms: 10000
+          bindings:
+            emailEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
+              group: emailEventGroup
+              destination: emailEvent
+            emailEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: emailEventReceive
+              group: emailEventReceive
+              destination: emailEvent
+            smsEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 2
+              group: smsEventGroup
+              destination: smsEvent
+            smsEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 2
+                  group:
+                    id: smsEventReceive
+              group: smsEventReceive
+              destination: smsEvent
+            clientEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 3
+                  group:
+                    id: clientEmailReceiveGroup
+              group: clientEmailReceiveGroup
+              destination: clientEmail
+            clickTrackEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 4
+                  group:
+                    id: clickTrackEventGroup
+              group: clickTrackEventGroup
+              destination: clickTrackEvent
+            EmailUpdateReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 5
+                  group:
+                    id: EmailUpdateReceiveGroup
+              group: EmailUpdateReceiveGroup
+              destination: EmailUpdate
+            campaignTriggerReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 6
+                  group:
+                    id: campaignTriggerReceive
+              group: campaignTriggerReceive
+              destination: campaignTrigger
+            fcmEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 3
+              group: fcmMessageGroup
+              destination: fcmMessage
+            fcmEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 7
+                  group:
+                    id: fcmMessageReceiveGroup
+              group: fcmMessageReceiveGroup
+              destination: fcmMessage
+            fcmFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 4
+              group: fcmFailureEventGroup
+              destination: fcmEventFailure
+            emailFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 5
+              group: emailFailureEventGroup
+              destination: emailFailureEvent
+            VerificationEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 7
+                  group:
+                    id: verificationEmailReceive
+              group: verificationEmailReceive
+              destination: verificationEmail
         bindings:
           emailEventSend:
             group: emailEventGroup
@@ -33,6 +151,12 @@ spring:
           emailEventReceive:
             group: emailEventReceive
             destination: emailEvent
+          smsEventSend:
+            group: smsEventGroup
+            destination: smsEvent
+          smsEventReceive:
+            group: smsEventReceive
+            destination: smsEvent
           clientEmailReceive:
             group: clientEmailReceiveGroup
             destination: clientEmail
@@ -48,12 +172,18 @@ spring:
           fcmEventSend:
             group: fcmMessageGroup
             destination: fcmMessage
+          fcmEventReceive:
+            group: fcmMessageReceiveGroup
+            destination: fcmMessage
           fcmFailureEventSend:
             group: fcmFailureEventGroup
             destination: fcmEventFailure
           emailFailureEventSend:
             group: emailFailureEventGroup
             destination: emailFailureEvent
+          VerificationEmailReceive:
+            group: verificationEmailReceive
+            destination: verificationEmail
   mvc:
     view:
       prefix: /WEB-INF/views/

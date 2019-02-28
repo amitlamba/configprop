@@ -28,6 +28,55 @@ spring:
             auto-create-topics: true
             min-partition-count: 1
             replication-factor: 1
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+          bindings:
+            scheduleJobSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
+              group: scheduleJobGroup
+              destination: scheduleJob
+            scheduleJobAckReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: scheduleJobAckGroup
+              group: scheduleJobAckGroup
+              destination: scheduleJobAck
+            clientEmailSend:
+              producer:
+                configuration:
+                  client:
+                    id: 2
+              group: clientEmailSendGroup
+              destination: clientEmail
+            fcmFailureEventReceive:
+              consumer:
+                configuration:
+                  group:
+                    id: fcmFailureEventGroup
+                  client:
+                    id: 2
+              group: fcmFailureEventGroup
+              destination: fcmEventFailure
+            emailFailureEventReceive:
+              consumer:
+                configuration:
+                  group:
+                    id: emailFailureEventReceiveGroup
+                  client:
+                    id: 3
+              group: emailFailureEventReceiveGroup
+              destination: emailFailureEvent
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup

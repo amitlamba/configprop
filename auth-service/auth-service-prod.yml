@@ -20,6 +20,21 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+          bindings:
+            clientEmailSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
+              group: clientEmailSendGroup
+              destination: clientEmail
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup
@@ -86,7 +101,7 @@ und:
       setting:
         id: 1
     from:
-      address: userndot19@gmail.com
+      address: admin@userndot.com
   metadata:
     userProperties: /home/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
