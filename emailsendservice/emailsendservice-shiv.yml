@@ -9,15 +9,15 @@ spring:
     name: emailsendservice
   thymeleaf:
     cache: false
-  jackson:
-    serialization:
-      INDENT_OUTPUT: true
   redis:
-    host: ${REDIS_IP}
+    host: userndot.com
     port: ${REDIS_PORT}
   cache:
     redis:
       use-key-prefix: true
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
   cloud:
       stream:
         kafka:
@@ -26,29 +26,156 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+#                  This property effect performance.
+                commit:
+                  interval:
+                    ms: 5000  #default value
+              max:
+                poll:
+                  interval:
+                    ms: 300000  # default value
+          bindings:
+            emailEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
+              group: emailEventGroup
+              destination: emailEventShiv
+            emailEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: emailEventReceive
+              group: emailEventReceive
+              destination: emailEventShiv
+            smsEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 2
+              group: smsEventGroup
+              destination: smsEventShiv
+            smsEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 2
+                  group:
+                    id: smsEventReceive
+              group: smsEventReceive
+              destination: smsEventShiv
+            clientEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 3
+                  group:
+                    id: clientEmailReceiveGroup
+              group: clientEmailReceiveGroup
+              destination: clientEmailShiv
+            clickTrackEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 4
+                  group:
+                    id: clickTrackEventGroup
+              group: clickTrackEventGroup
+              destination: clickTrackEventShiv
+            EmailUpdateReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 5
+                  group:
+                    id: EmailUpdateReceiveGroup
+              group: EmailUpdateReceiveGroup
+              destination: EmailUpdateShiv
+            campaignTriggerReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 6
+                  group:
+                    id: campaignTriggerReceive
+              group: campaignTriggerReceive
+              destination: campaignTriggerShiv
+            fcmEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 3
+              group: fcmMessageGroup
+              destination: fcmMessageShiv
+            fcmEventReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 7
+                  group:
+                    id: fcmMessageReceive
+#              group: fcmMessageReceive
+#              destination: fcmMessageShiv
+            fcmFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 4
+              group: fcmFailureEventGroup
+              destination: fcmEventFailureShiv
+            emailFailureEventSend:
+              producer:
+                configuration:
+                  client:
+                    id: 5
+              group: emailFailureEventGroup
+              destination: emailFailureEventShiv
+            VerificationEmailReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 7
+                  group:
+                    id: verificationEmailReceive
+              group: verificationEmailReceive
+              destination: verificationEmailShiv
         bindings:
           emailEventSend:
-            group: emailEventGroup
-            destination: emailEventshiv
+            destination: emailEventShiv
+          emailEventReceive:
+            destination: emailEventShiv
+          smsEventSend:
+            destination: smsEventShiv
+          smsEventReceive:
+            destination: smsEventShiv
           clientEmailReceive:
-            group: clientEmailReceiveGroup
-            destination: clientEmailshiv
+            destination: clientEmailShiv
           clickTrackEventReceive:
-            group: clickTrackEventGroup
-            destination: clickTrackEventshiv
+            destination: clickTrackEventShiv
           EmailUpdateReceive:
-            group: EmailUpdateReceiveGroup
-            destination: EmailUpdateshiv
+            destination: EmailUpdateShiv
           campaignTriggerReceive:
-            group: campaignTriggerReceive
-            destination: campaignTriggershiv
+            destination: campaignTriggerShiv
           fcmEventSend:
-            group: fcmMessageGroup
-            destination: fcmMessageshiv
+            destination: fcmMessageShiv
+          fcmEventReceive:
+            destination: fcmMessageShiv
+          fcmFailureEventSend:
+            destination: fcmEventFailureShiv
           emailFailureEventSend:
-            group: scheduleJobpauseGroup
-            destination: emailFailureEventeshiv
-
+            destination: emailFailureEventShiv
+          VerificationEmailReceive:
+            destination: verificationEmailShiv
   mvc:
     view:
       prefix: /WEB-INF/views/
