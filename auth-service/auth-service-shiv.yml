@@ -19,10 +19,25 @@ spring:
             defaultBrokerPort: ${KAFKA_PORT}
             zkNodes: ${KAFKA_IP}
             defaultZkPort: 2181
+            configuration:
+              enable:
+                auto:
+                  commit: true
+              auto:
+                offset:
+                  reset: earliest
+          bindings:
+            clientEmailSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
+              group: clientEmailSendGroup
+              destination: clientEmailShiv
         bindings:
           clientEmailSend:
             group: clientEmailSendGroup
-            destination: clientEmailStaging
+            destination: clientEmailShiv
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
@@ -79,7 +94,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: ${HOME}/log/staging/und-auth-service.log
+  file: log/und-auth-service.log
 
 und:
   system:
