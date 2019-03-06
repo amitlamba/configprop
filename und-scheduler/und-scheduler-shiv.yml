@@ -1,7 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
   port: 6363
-  contextPath:
 
 # JACKSON
 spring:
@@ -10,36 +9,45 @@ spring:
   jackson:
     serialization:
       INDENT_OUTPUT: true
-      write-dates-as-timestamps: false
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            #producer-configuration:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           scheduleJobReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: scheduleJobReceive
             group: scheduleJobReceive
-            destination: scheduleJobshiv
+            destination: scheduleJobShiv
           campaignTriggerSend:
             group: campaignTriggerGroup
-            destination: campaignTriggershiv
+            destination: campaignTriggerShiv
           scheduleJobAckSend:
             group: scheduleJobAckGroup
-            destination: scheduleJobAckshiv
+            destination: scheduleJobAckShiv
+      bindings:
+        scheduleJobReceive:
+          destination: scheduleJobShiv
+        campaignTriggerSend:
+          destination: campaignTriggerShiv
+        scheduleJobAckSend:
+          destination: scheduleJobAckShiv
 
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: never
-    properties:
-      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
-  jpa:
-    hibernate:
-      ddl-auto: none
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrenceshiv
     driver-class-name: org.postgresql.Driver
@@ -61,10 +69,6 @@ spring:
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
 
-using:
-  spring:
-    schedulerFactory: true
-
 security:
   header:
     token: authorization
@@ -79,7 +83,7 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /scheduler/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -97,19 +101,3 @@ logging:
       und: info
   file: log/und-scheduler.log
 
-encrypt:
-  key: UserNDot@18
-
-encryption-decryption:
-  key:
-    default: DaO1TXt5B0R92Yys
-    unsubscribe: TaO5T01R9BXt2yYS
-
-und:
-  system:
-    user:
-      token: jasdghajskdhg
-  url:
-    event: http://userndot.com/event
-  auth-url: http://nestros.com:8080/auth
-  from-email: shiv@und.com
