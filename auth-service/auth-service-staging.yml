@@ -29,11 +29,15 @@ spring:
                     reset: earliest
           bindings:
             clientEmailSend:
+              producer:
+                configuration:
+                  client:
+                    id: 1
               group: clientEmailSendGroup
               destination: clientEmailStaging
         bindings:
           clientEmailSend:
-            destination: clientEmailStaging
+          destination: clientEmailStaging
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging

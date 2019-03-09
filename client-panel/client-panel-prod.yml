@@ -190,6 +190,7 @@ und:
   url:
     event: https://userndot.com/event
     client: https://userndot.com/client
+    clientui: http://userndot.com/
   auth-url: https://userndot.com/auth
   from-email: admin@userndot.com
   lambda:

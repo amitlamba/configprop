@@ -213,6 +213,7 @@ und:
   url:
     event: http://userndot.com/event
     client: http://userndot.com/client
+    clientui: http://userndot.com/
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@userndot.com
   lambda:
