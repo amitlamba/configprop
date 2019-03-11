@@ -89,6 +89,8 @@ spring:
             outNotificationRead:
               group: outNotification
               destination: trackNotification
+            outEventForLiveSegment:
+              destination: processliveevent
         bindings:
           inEvent:
             destination: eventStaging
@@ -114,6 +116,8 @@ spring:
             destination: trackNotification
           outNotificationRead:
             destination: trackNotification
+          outEventForLiveSegment:
+            destination: processliveevent
   jpa:
       show-sql: false
       database-platform: org.hibernate.dialect.PostgreSQL9Dialect

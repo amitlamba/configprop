@@ -47,6 +47,8 @@ spring:
           destination: campaignTriggerStaging
         scheduleJobAckSend:
           destination: scheduleJobAckStaging
+        outJobForLiveSegmentCheck:
+          destination: liveusercheck
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
