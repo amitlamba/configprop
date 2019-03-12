@@ -155,6 +155,7 @@ spring:
                     id: 8
                   group:
                     id: processLiveUserReceiveGroup
+              group: processLiveUserReceiveGroup
               destination: processliveuser
         bindings:
           emailEventSend:
