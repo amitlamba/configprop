@@ -108,6 +108,8 @@ spring:
                 client:
                   id: 5
             destination: liveusercheck
+          scheduleLiveJobSend:
+            destination: scheduleLiveJobStaging
       bindings:
         scheduleJobSend:
           destination: scheduleJobStaging
@@ -125,6 +127,8 @@ spring:
           destination: processliveuser
         inJobForLiveSegmentCheck:
           destination: liveusercheck
+        scheduleLiveJobSend:
+          destination: scheduleLiveJobStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -149,6 +153,9 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+    hikari:
+      maximum-pool-size: 3
+      idle-timeout: 10000
   data:
     mongodb:
       database: eventdbstaging

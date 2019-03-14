@@ -207,6 +207,9 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+    hikari:
+      maximum-pool-size: 3
+      idle-timeout: 10000
   data:
     mongodb:
       database: eventdbstaging
