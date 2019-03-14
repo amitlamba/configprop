@@ -31,8 +31,8 @@ spring:
                 client:
                   id: 1
                 group:
-                  id: scheduleJobReceive
-            group: scheduleJobReceive
+                  id: scheduleJobReceiveStaging
+            group: scheduleJobReceiveStaging
             destination: scheduleJobStaging
           campaignTriggerSend:
             group: campaignTriggerGroup
@@ -40,6 +40,13 @@ spring:
           scheduleJobAckSend:
             group: scheduleJobAckGroup
             destination: scheduleJobAckStaging
+          scheduleLiveJobReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 2
+                group:
+                  id: scheduleLiveJobReceiveStaging
       bindings:
         scheduleJobReceive:
           destination: scheduleJobStaging
@@ -49,6 +56,8 @@ spring:
           destination: scheduleJobAckStaging
         outJobForLiveSegmentCheck:
           destination: liveusercheck
+        scheduleLiveJobReceive:
+          destination: scheduleLiveJobStaging
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
