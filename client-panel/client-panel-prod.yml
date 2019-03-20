@@ -77,6 +77,27 @@ spring:
                     id: 3
               group: emailFailureEventReceiveGroup
               destination: emailFailureEvent
+            inEventForLiveSegment:
+              consumer:
+                configuration:
+                  group:
+                    id: processLiveEventReceiveGroup
+                  client:
+                    id: 4
+              destination: processliveevent
+            outLiveSegment:
+              group: processLiveUserGroup
+              destination: processliveuser
+            inJobForLiveSegmentCheck:
+              consumer:
+                configuration:
+                  group:
+                    id: liveUserCheckReceiveGroup
+                  client:
+                    id: 5
+              destination: liveusercheck
+            scheduleLiveJobSend:
+              destination: scheduleLiveJob
         bindings:
           scheduleJobSend:
             group: scheduleJobGroup
@@ -93,6 +114,14 @@ spring:
           emailFailureEventReceive:
             group: emailFailureEventReceiveGroup
             destination: emailFailureEvent
+          inEventForLiveSegment:
+            destination: processliveevent
+          outLiveSegment:
+            destination: processliveuser
+          inJobForLiveSegmentCheck:
+            destination: liveusercheck
+          scheduleLiveJobSend:
+            destination: scheduleLiveJob
   mvc:
     view:
       prefix: /WEB-INF/views/

@@ -88,6 +88,8 @@ spring:
             outNotificationRead:
               group: outNotification
               destination: trackNotification
+            outEventForLiveSegment:
+              destination: processliveevent
         bindings:
           inEvent:
             group: inEvent
@@ -125,6 +127,8 @@ spring:
           outNotificationRead:
             group: outNotification
             destination: trackNotification
+          outEventForLiveSegment:
+            destination: processliveevent
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
