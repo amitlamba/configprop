@@ -144,6 +144,15 @@ spring:
                     id: verificationEmailReceive
               group: verificationEmailReceive
               destination: verificationEmail
+            inLiveSegment:
+              consumer:
+                configuration:
+                  client:
+                    id: 8
+                  group:
+                    id: processLiveUserReceiveGroup
+              group: processLiveUserReceiveGroup
+              destination: processliveuser
         bindings:
           emailEventSend:
             group: emailEventGroup
@@ -184,6 +193,8 @@ spring:
           VerificationEmailReceive:
             group: verificationEmailReceive
             destination: verificationEmail
+          inLiveSegment:
+            destination: processliveuser
   mvc:
     view:
       prefix: /WEB-INF/views/

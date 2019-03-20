@@ -41,6 +41,13 @@ spring:
           scheduleJobAckSend:
             group: scheduleJobAckGroup
             destination: scheduleJobAck
+          scheduleLiveJobReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 2
+                group:
+                  id: scheduleLiveJobReceive
       bindings:
         scheduleJobReceive:
           group: scheduleJobReceive
@@ -51,6 +58,10 @@ spring:
         scheduleJobAckSend:
           group: scheduleJobAckGroup
           destination: scheduleJobAck
+        outJobForLiveSegmentCheck:
+          destination: liveusercheck
+        scheduleLiveJobReceive:
+          destination: scheduleLiveJob
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
