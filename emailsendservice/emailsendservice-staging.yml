@@ -164,7 +164,7 @@ spring:
                     id: 9
                   group:
                     id: testCampaignReceiveGroup
-              destinataion: testCampaignStaging
+              destination: testCampaignStaging
         bindings:
           emailEventSend:
             destination: emailEventStaging
@@ -195,7 +195,7 @@ spring:
           inLiveSegment:
             destination: processliveuser
           inTestCampaign:
-            destinataion: testCampaignStaging
+            destination: testCampaignStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
