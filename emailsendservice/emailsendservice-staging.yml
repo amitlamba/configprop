@@ -164,6 +164,7 @@ spring:
                     id: 9
                   group:
                     id: testCampaignReceiveGroup
+              group: testCampaignReceiveGroup
               destination: testCampaignStaging
         bindings:
           emailEventSend:
