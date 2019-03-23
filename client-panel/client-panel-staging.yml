@@ -110,6 +110,8 @@ spring:
             destination: liveusercheck
           scheduleLiveJobSend:
             destination: scheduleLiveJobStaging
+          outTestCampaign:
+            destinataion: testCampaignStaging
       bindings:
         scheduleJobSend:
           destination: scheduleJobStaging
@@ -129,6 +131,8 @@ spring:
           destination: liveusercheck
         scheduleLiveJobSend:
           destination: scheduleLiveJobStaging
+        outTestCampaign:
+          destinataion: testCampaignStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
