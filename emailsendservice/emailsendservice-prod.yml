@@ -139,7 +139,7 @@ spring:
               consumer:
                 configuration:
                   client:
-                    id: 7
+                    id: 8
                   group:
                     id: verificationEmailReceive
               group: verificationEmailReceive
@@ -148,7 +148,7 @@ spring:
               consumer:
                 configuration:
                   client:
-                    id: 8
+                    id: 9
                   group:
                     id: processLiveUserReceiveGroup
               group: processLiveUserReceiveGroup
