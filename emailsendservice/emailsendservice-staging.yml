@@ -2,10 +2,6 @@
 server:
   port: 7484
 
-und:
-  url:
-    event: http://userndot.com/event
-
 # JACKSON
 spring:
   application:
