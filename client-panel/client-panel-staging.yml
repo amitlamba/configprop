@@ -112,6 +112,8 @@ spring:
             destination: scheduleLiveJobStaging
           outTestCampaign:
             destination: testCampaignStaging
+          triggerManualCampaign:
+            destination: manualCampaignStaging
       bindings:
         scheduleJobSend:
           destination: scheduleJobStaging
@@ -133,6 +135,9 @@ spring:
           destination: scheduleLiveJobStaging
         outTestCampaign:
           destination: testCampaignStaging
+        triggerManualCampaign:
+          destination: manualCampaignStaging
+
   mvc:
     view:
       prefix: /WEB-INF/views/
