@@ -182,6 +182,9 @@ spring:
                     id: manualCampaignTriggerReceiveGroup
               group: manualCampaignTriggerReceiveGroup
               destination: manualCampaignStaging
+            scheduleJobSend:
+              group: scheduleJobGroup
+              destination: scheduleJobStaging
         bindings:
           emailEventSend:
             destination: emailEventStaging
@@ -217,6 +220,8 @@ spring:
             destination: abCampaignTriggerStaging
           receiveManualTriggerCampaign:
             destination: manualCampaignStaging
+          scheduleJobSend:
+            destination: scheduleJobStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
