@@ -185,6 +185,8 @@ spring:
             scheduleJobSend:
               group: scheduleJobGroup
               destination: scheduleJobStaging
+            clientEmailSend:
+              destination: clientEmailStaging
         bindings:
           emailEventSend:
             destination: emailEventStaging
@@ -222,6 +224,8 @@ spring:
             destination: manualCampaignStaging
           scheduleJobSend:
             destination: scheduleJobStaging
+          clientEmailSend:
+            destination: clientEmailStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -305,6 +309,11 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+    from:
+      address: userndot19@gmail.com
   url:
     event: http://userndot.com/event
   auth-url: http://nestros.com:8090/auth
