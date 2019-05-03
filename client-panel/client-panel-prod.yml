@@ -98,21 +98,23 @@ spring:
               destination: liveusercheck
             scheduleLiveJobSend:
               destination: scheduleLiveJob
+            outTestCampaign:
+              destination: testCampaign
         bindings:
           scheduleJobSend:
-            group: scheduleJobGroup
+#            group: scheduleJobGroup
             destination: scheduleJob
           scheduleJobAckReceive:
-            group: scheduleJobAckGroup
+#            group: scheduleJobAckGroup
             destination: scheduleJobAck
           clientEmailSend:
-            group: clientEmailSendGroup
+#            group: clientEmailSendGroup
             destination: clientEmail
           fcmFailureEventReceive:
-            group: fcmFailureEventGroup
+#            group: fcmFailureEventGroup
             destination: fcmEventFailure
           emailFailureEventReceive:
-            group: emailFailureEventReceiveGroup
+#            group: emailFailureEventReceiveGroup
             destination: emailFailureEvent
           inEventForLiveSegment:
             destination: processliveevent
@@ -122,6 +124,8 @@ spring:
             destination: liveusercheck
           scheduleLiveJobSend:
             destination: scheduleLiveJob
+          outTestCampaign:
+            destination: testCampaign
   mvc:
     view:
       prefix: /WEB-INF/views/

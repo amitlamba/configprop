@@ -25,10 +25,11 @@ spring:
           bindings:
             inEvent:
               consumer:
-                client:
-                  id: 1
-                group:
-                  id: inEvent
+                configuration:
+                  client:
+                    id: 1
+                 group:
+                   id: inEvent
               group: inEvent
               destination: eventStaging
             outEvent:
@@ -36,10 +37,11 @@ spring:
               destination: eventStaging
             inEventUser:
               consumer:
-                client:
-                  id: 2
-                group:
-                  id: inEventUser
+                configuration:
+                  client:
+                    id: 2
+                  group:
+                   id: inEventUser
               group: inEventUser
               destination: eventUserStaging
             outEventUser:
@@ -47,10 +49,11 @@ spring:
               destination: eventUserStaging
             inProcessEventUserProfile:
               consumer:
-                client:
-                  id: 3
-                group:
-                  id: processEventUserProfile
+                configuration:
+                  client:
+                   id: 3
+                 group:
+                   id: processEventUserProfile
               group: processEventUserProfile
               destination: processUserProfileStaging
             outProcessEventUserProfile:
@@ -58,10 +61,11 @@ spring:
                 destination: processUserProfileStaging
             inTrackEvent:
               consumer:
-                client:
-                  id: 3
-                group:
-                  id: inTrackEvent
+                configuration:
+                  client:
+                    id: 4
+                  group:
+                    id: inTrackEvent
               group: inTrackEvent
               destination: trackEventStaging
             outTrackEvent:
@@ -69,10 +73,11 @@ spring:
               destination: trackEventStaging
             inEmailRead:
               consumer:
-                client:
-                  id: 5
-                group:
-                  id: inEmailRead
+                configuration:
+                  client:
+                    id: 5
+                  group:
+                    id: inEmailRead
               group: inEmailRead
               destination: emailReadStaging
             outEmailRead:
@@ -80,10 +85,11 @@ spring:
               destination: emailReadStaging
             inNotificationRead:
               consumer:
-                client:
-                  id: 6
-                group:
-                  id: inNotification
+                configuration:
+                  client:
+                    id: 6
+                 group:
+                    id: inNotification
               group: inNotification
               destination: trackNotification
             outNotificationRead:
