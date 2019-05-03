@@ -92,40 +92,28 @@ spring:
               destination: processliveevent
         bindings:
           inEvent:
-            group: inEvent
             destination: event
           outEvent:
-            group: outEvent
             destination: event
           inEventUser:
-            group: inEventUser
             destination: eventUser
           outEventUser:
-            group: outEventUser
             destination: eventUser
           inProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfile
+            destination: processUserProfile
           outProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfile
+            destination: processUserProfile
           inTrackEvent:
-            group: inTrackEvent
             destination: trackEvent
           outTrackEvent:
-            group: outTrackEvent
             destination: trackEvent
           inEmailRead:
-            group: inEmailRead
             destination: emailRead
           outEmailRead:
-            group: outEmailRead
             destination: emailRead
           inNotificationRead:
-            group: inNotification
             destination: trackNotification
           outNotificationRead:
-            group: outNotification
             destination: trackNotification
           outEventForLiveSegment:
             destination: processliveevent
