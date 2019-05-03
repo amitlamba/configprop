@@ -24,10 +24,11 @@ spring:
           bindings:
             inEvent:
               consumer:
-                client:
-                  id: 1
-                group:
-                  id: inEvent
+                configuration:
+                  client:
+                    id: 1
+                  group:
+                    id: inEvent
               group: inEvent
               destination: event
             outEvent:
@@ -35,10 +36,11 @@ spring:
               destination: event
             inEventUser:
               consumer:
-                client:
-                  id: 2
-                group:
-                  id: inEventUser
+                configuration:
+                  client:
+                   id: 2
+                  group:
+                    id: inEventUser
               group: inEventUser
               destination: eventUser
             outEventUser:
@@ -46,10 +48,11 @@ spring:
               destination: eventUser
             inProcessEventUserProfile:
               consumer:
-                client:
-                  id: 3
-                group:
-                  id: processEventUserProfile
+                configuration:
+                  client:
+                   id: 3
+                  group:
+                   id: processEventUserProfile
               group: processEventUserProfile
               destination: processUserProfile
             outProcessEventUserProfile:
@@ -57,10 +60,11 @@ spring:
               destination: processUserProfile
             inTrackEvent:
               consumer:
-                client:
-                  id: 4
-                group:
-                  id: inTrackEvent
+                configuration:
+                  client:
+                   id: 4
+                  group:
+                   id: inTrackEvent
               group: inTrackEvent
               destination: trackEvent
             outTrackEvent:
@@ -68,10 +72,11 @@ spring:
               destination: trackEvent
             inEmailRead:
               consumer:
-                client:
-                  id: 5
-                group:
-                  id: inEmailRead
+                configuration:
+                  client:
+                   id: 5
+                  group:
+                    id: inEmailRead
               group: inEmailRead
               destination: emailRead
             outEmailRead:
@@ -79,10 +84,11 @@ spring:
               destination: emailRead
             inNotificationRead:
               consumer:
-                client:
-                  id: 6
-                group:
-                  id: inNotification
+                configuration:
+                  client:
+                    id: 6
+                  group:
+                    id: inNotification
               group: inNotification
               destination: trackNotification
             outNotificationRead:
