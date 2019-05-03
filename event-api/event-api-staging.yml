@@ -28,8 +28,8 @@ spring:
                 configuration:
                   client:
                     id: 1
-                 group:
-                   id: inEvent
+                  group:
+                    id: inEvent
               group: inEvent
               destination: eventStaging
             outEvent:
@@ -125,12 +125,12 @@ spring:
           outEventForLiveSegment:
             destination: processliveevent
   jpa:
-      show-sql: false
-      database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-      properties:
-        hibernate:
-          temp:
-            use_jdbc_metadata_defaults: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
