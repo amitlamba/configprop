@@ -3,6 +3,8 @@ server:
 
 
 spring:
+  application:
+    name: event-api
   jackson:
     serialization:
       INDENT_OUTPUT: true
