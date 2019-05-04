@@ -6,123 +6,123 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            #producer-configuration:
-            configuration:
-              enable:
-                auto:
-                  commit: true
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #producer-configuration:
+          configuration:
+            enable:
               auto:
-                offset:
-                  reset: earliest
-          bindings:
-            inEvent:
-              consumer:
-                configuration:
-                  client:
-                    id: 1
-                  group:
-                    id: inEvent
-              group: inEvent
-              destination: event
-            outEvent:
-              group: outEvent
-              destination: event
-            inEventUser:
-              consumer:
-                configuration:
-                  client:
-                   id: 2
-                  group:
-                    id: inEventUser
-              group: inEventUser
-              destination: eventUser
-            outEventUser:
-              group: outEventUser
-              destination: eventUser
-            inProcessEventUserProfile:
-              consumer:
-                configuration:
-                  client:
-                   id: 3
-                  group:
-                   id: processEventUserProfile
-              group: processEventUserProfile
-              destination: processUserProfile
-            outProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfile
-            inTrackEvent:
-              consumer:
-                configuration:
-                  client:
-                   id: 4
-                  group:
-                   id: inTrackEvent
-              group: inTrackEvent
-              destination: trackEvent
-            outTrackEvent:
-              group: outTrackEvent
-              destination: trackEvent
-            inEmailRead:
-              consumer:
-                configuration:
-                  client:
-                   id: 5
-                  group:
-                    id: inEmailRead
-              group: inEmailRead
-              destination: emailRead
-            outEmailRead:
-              group: outEmailRead
-              destination: emailRead
-            inNotificationRead:
-              consumer:
-                configuration:
-                  client:
-                    id: 6
-                  group:
-                    id: inNotification
-              group: inNotification
-              destination: trackNotification
-            outNotificationRead:
-              group: outNotification
-              destination: trackNotification
-            outEventForLiveSegment:
-              destination: processliveevent
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           inEvent:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: inEvent
+            group: inEvent
             destination: event
           outEvent:
+            group: outEvent
             destination: event
           inEventUser:
+            consumer:
+              configuration:
+                client:
+                 id: 2
+                group:
+                  id: inEventUser
+            group: inEventUser
             destination: eventUser
           outEventUser:
+            group: outEventUser
             destination: eventUser
           inProcessEventUserProfile:
+            consumer:
+              configuration:
+                client:
+                 id: 3
+                group:
+                 id: processEventUserProfile
+            group: processEventUserProfile
             destination: processUserProfile
           outProcessEventUserProfile:
+            group: processEventUserProfile
             destination: processUserProfile
           inTrackEvent:
+            consumer:
+              configuration:
+                client:
+                 id: 4
+                group:
+                 id: inTrackEvent
+            group: inTrackEvent
             destination: trackEvent
           outTrackEvent:
+            group: outTrackEvent
             destination: trackEvent
           inEmailRead:
+            consumer:
+              configuration:
+                client:
+                 id: 5
+                group:
+                  id: inEmailRead
+            group: inEmailRead
             destination: emailRead
           outEmailRead:
+            group: outEmailRead
             destination: emailRead
           inNotificationRead:
+            consumer:
+              configuration:
+                client:
+                  id: 6
+                group:
+                  id: inNotification
+            group: inNotification
             destination: trackNotification
           outNotificationRead:
+            group: outNotification
             destination: trackNotification
           outEventForLiveSegment:
             destination: processliveevent
+      bindings:
+        inEvent:
+          destination: event
+        outEvent:
+          destination: event
+        inEventUser:
+          destination: eventUser
+        outEventUser:
+          destination: eventUser
+        inProcessEventUserProfile:
+          destination: processUserProfile
+        outProcessEventUserProfile:
+          destination: processUserProfile
+        inTrackEvent:
+          destination: trackEvent
+        outTrackEvent:
+          destination: trackEvent
+        inEmailRead:
+          destination: emailRead
+        outEmailRead:
+          destination: emailRead
+        inNotificationRead:
+          destination: trackNotification
+        outNotificationRead:
+          destination: trackNotification
+        outEventForLiveSegment:
+          destination: processliveevent
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
     driver-class-name: org.postgresql.Driver
