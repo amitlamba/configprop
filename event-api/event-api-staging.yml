@@ -13,17 +13,17 @@ spring:
       kafka:
         binder:
           brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            #producer-configuration:
-            configuration:
-              enable:
-                auto:
-                  commit: true
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #producer-configuration:
+          configuration:
+            enable:
               auto:
-                offset:
-                  reset: earliest
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           inEvent:
             consumer:
@@ -130,9 +130,9 @@ spring:
     show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     properties:
-    hibernate:
-      temp:
-        use_jdbc_metadata_defaults: false
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
     driver-class-name: org.postgresql.Driver
