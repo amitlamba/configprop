@@ -24,6 +24,17 @@ spring:
             auto:
               offset:
                 reset: earliest
+            max:
+              poll:
+                records: 50
+                interval:
+                  ms: 300000
+            heartbeat:
+              interval:
+                ms: 3000
+            session:
+              timeout:
+                ms: 10000
         bindings:
           inEvent:
             consumer:
