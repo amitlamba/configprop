@@ -162,9 +162,9 @@ spring:
       port: ${MONGO_PORT}
 
   zipkin:
-    base-url: http://springbootzipkin:7777
+    base-url: http://192.168.0.109:9411/
     sender:
-      type: kafka
+      type: web
   sleuth:
     sampler:
       probability: 1
