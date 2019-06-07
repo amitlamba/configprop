@@ -145,10 +145,10 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/springboard
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password:  postgres
+    password: und@123
     tomcat:
       initial-size: 10
       max-wait: 10000
@@ -157,7 +157,7 @@ spring:
 
   data:
     mongodb:
-      database: eventdbstaging
+      database: eventdbspringboard
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 

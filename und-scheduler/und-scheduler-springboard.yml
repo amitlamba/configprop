@@ -65,10 +65,10 @@ spring:
           destination: abCampaignTriggerStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencespringboard
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password:  postgres
+    password: und@123
     tomcat:
       initial-size: 10
       max-wait: 10000

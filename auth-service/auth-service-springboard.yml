@@ -40,13 +40,13 @@ spring:
           destination: clientEmailStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/springboard
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password:  postgres
+    password: und@123
   data:
     mongodb:
-      database: eventdbstaging
+      database: eventdbspringboard
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
     tomcat:
