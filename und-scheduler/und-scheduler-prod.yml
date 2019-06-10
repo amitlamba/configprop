@@ -48,6 +48,9 @@ spring:
                   id: 2
                 group:
                   id: scheduleLiveJobReceive
+          abCampaignTriggerSend:
+            group: abCampaignTrigger
+            destination: abCampaignTrigger
       bindings:
         scheduleJobReceive:
           group: scheduleJobReceive
@@ -62,6 +65,8 @@ spring:
           destination: liveusercheck
         scheduleLiveJobReceive:
           destination: scheduleLiveJob
+        abCampaignTriggerSend:
+          destination: abCampaignTrigger
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence

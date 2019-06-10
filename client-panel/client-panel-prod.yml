@@ -100,6 +100,8 @@ spring:
               destination: scheduleLiveJob
             outTestCampaign:
               destination: testCampaign
+            triggerManualCampaign:
+              destination: manualCampaign
         bindings:
           scheduleJobSend:
 #            group: scheduleJobGroup
@@ -126,6 +128,8 @@ spring:
             destination: scheduleLiveJob
           outTestCampaign:
             destination: testCampaign
+          triggerManualCampaign:
+            destination: manualCampaignStaging
   mvc:
     view:
       prefix: /WEB-INF/views/
