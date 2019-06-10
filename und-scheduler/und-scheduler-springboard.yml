@@ -1,6 +1,6 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 6363
+  port: 6373
 
 # JACKSON
 spring:
@@ -17,7 +17,6 @@ spring:
           defaultBrokerPort: ${KAFKA_PORT}
           #zkNodes: ${KAFKA_IP}
           defaultZkPort: 2181
-          #producer-configuration:
           configuration:
             enable:
               auto:
@@ -32,47 +31,44 @@ spring:
                 client:
                   id: 1
                 group:
-                  id: scheduleJobReceive
-            group: scheduleJobReceive
-            destination: scheduleJob
+                  id: scheduleJobReceiveStaging
+            group: scheduleJobReceiveStaging
+            destination: scheduleJobStaging
           campaignTriggerSend:
             group: campaignTriggerGroup
-            destination: campaignTrigger
+            destination: campaignTriggerStaging
           scheduleJobAckSend:
             group: scheduleJobAckGroup
-            destination: scheduleJobAck
+            destination: scheduleJobAckStaging
           scheduleLiveJobReceive:
             consumer:
               configuration:
                 client:
                   id: 2
                 group:
-                  id: scheduleLiveJobReceive
+                  id: scheduleLiveJobReceiveStaging
           abCampaignTriggerSend:
             group: abCampaignTrigger
-            destination: abCampaignTrigger
+            destination: abCampaignTriggerStaging
       bindings:
         scheduleJobReceive:
-          group: scheduleJobReceive
-          destination: scheduleJob
+          destination: scheduleJobStaging
         campaignTriggerSend:
-          group: campaignTriggerGroup
-          destination: campaignTrigger
+          destination: campaignTriggerStaging
         scheduleJobAckSend:
-          group: scheduleJobAckGroup
-          destination: scheduleJobAck
+          destination: scheduleJobAckStaging
         outJobForLiveSegmentCheck:
           destination: liveusercheck
         scheduleLiveJobReceive:
-          destination: scheduleLiveJob
+          destination: scheduleLiveJobStaging
         abCampaignTriggerSend:
-          destination: abCampaignTrigger
+          destination: abCampaignTriggerStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencespringboard
     driver-class-name: org.postgresql.Driver
-    username: ${POSTGRES_USERNAME}
-    password: ${POSTGRES_PASSWORD}
+    username: postgres
+    password: und@123
     tomcat:
       initial-size: 10
       max-wait: 10000
@@ -80,9 +76,9 @@ spring:
       test-on-borrow: true
 
   zipkin:
-    base-url: http://springbootzipkin:7777
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
     sender:
-      type: kafka
+      type: web
   sleuth:
     sampler:
       probability: 1
@@ -103,13 +99,13 @@ security:
 eureka:
   instance:
     prefer-ip-address: true
-    health-check-url-path: /scheduler/health
+    health-check-url-path: /application/health
   client:
     register-with-eureka: true
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
 
 logging:
   level:
@@ -119,5 +115,4 @@ logging:
       hibernate: info
     com:
       und: info
-  file: ${HOME}/log/und-scheduler.log
-
+  file: ${HOME}/log/staging/und-scheduler.log

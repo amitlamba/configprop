@@ -153,6 +153,36 @@ spring:
                     id: processLiveUserReceiveGroup
               group: processLiveUserReceiveGroup
               destination: processliveuser
+            inTestCampaign:
+              consumer:
+                configuration:
+                  client:
+                    id: 10
+                  group:
+                    id: testCampaignReceiveGroup
+              group: testCampaignReceiveGroup
+              destination: testCampaign
+            abCampaignTriggerReceive:
+              consumer:
+                configuration:
+                  client:
+                    id: 11
+                  group:
+                    id: abCampaignTriggerReceiveGroup
+            receiveManualTriggerCampaign:
+              consumer:
+                configuration:
+                  client:
+                    id: 12
+                  group:
+                    id: manualCampaignTriggerReceiveGroup
+              group: manualCampaignTriggerReceiveGroup
+              destination: manualCampaign
+            scheduleJobSend:
+              group: scheduleJobGroup
+              destination: scheduleJob
+            clientEmailSend:
+              destination: clientEmail
         bindings:
           emailEventSend:
             group: emailEventGroup
@@ -195,6 +225,16 @@ spring:
             destination: verificationEmail
           inLiveSegment:
             destination: processliveuser
+          inTestCampaign:
+            destination: testCampaign
+          abCampaignTriggerReceive:
+            destination: abCampaignTrigger
+          receiveManualTriggerCampaign:
+            destination: manualCampaign
+          scheduleJobSend:
+            destination: scheduleJob
+          clientEmailSend:
+            destination: clientEmail
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -222,13 +262,6 @@ spring:
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
 
-  zipkin:
-    base-url: http://springbootzipkin:7777
-    sender:
-      type: kafka
-  sleuth:
-    sampler:
-      probability: 1
   kafka:
     bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
 
