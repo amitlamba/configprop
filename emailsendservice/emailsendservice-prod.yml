@@ -306,6 +306,11 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+    from:
+      address: admin@userndot.com
   url:
     event: https://userndot.com/event
   auth-url: https://userndot.com/auth
