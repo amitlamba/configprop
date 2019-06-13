@@ -97,7 +97,7 @@ logging:
       apache: info
       hibernate: info
     com:
-      und: info
+      und: debug
   file: ${HOME}/log/staging/und-auth-service.log
 
 und:
