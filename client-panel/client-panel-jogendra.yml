@@ -12,35 +12,138 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            auto-create-topics: true
-            min-partition-count: 1
-            replication-factor: 1
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          auto-create-topics: true
+          min-partition-count: 1
+          replication-factor: 1
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           scheduleJobSend:
+            producer:
+              configuration:
+                client:
+                  id: 1
             group: scheduleJobGroup
             destination: scheduleJobStaging
           scheduleJobAckReceive:
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                  offset:
+                    reset: earliest
+                client:
+                  id: 1
+                group:
+                  id: scheduleJobAckGroup
             group: scheduleJobAckGroup
             destination: scheduleJobAckStaging
           clientEmailSend:
+            producer:
+              configuration:
+                client:
+                  id: 2
             group: clientEmailSendGroup
             destination: clientEmailStaging
           fcmFailureEventReceive:
-            group: schudleJobPauseGroup
-            destination: fcmEventFailure
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                  offset:
+                    reset: earliest
+                group:
+                  id: fcmFailureEventGroup
+                client:
+                  id: 2
+            group: fcmFailureEventGroup
+            destination: fcmEventFailureStaging
+          emailFailureEventReceive:
+            consumer:
+              configuration:
+                enable:
+                  auto:
+                    commit: true
+                auto:
+                  offset:
+                    reset: earliest
+                group:
+                  id: emailFailureEventReceiveGroup
+                client:
+                  id: 3
+            group: emailFailureEventReceiveGroup
+            destination: emailFailureEventStaging
+          inEventForLiveSegment:
+            consumer:
+              configuration:
+                group:
+                  id: processLiveEventReceiveGroup
+                client:
+                  id: 4
+            destination: processliveevent
+          outLiveSegment:
+            group: processLiveUserGroup
+            destination: processliveuser
+          inJobForLiveSegmentCheck:
+            consumer:
+              configuration:
+                group:
+                  id: liveUserCheckReceiveGroup
+                client:
+                  id: 5
+            destination: liveusercheck
+          scheduleLiveJobSend:
+            destination: scheduleLiveJobStaging
+          outTestCampaign:
+            destination: testCampaignStaging
+          triggerManualCampaign:
+            destination: manualCampaignStaging
+      bindings:
+        scheduleJobSend:
+          destination: scheduleJobStaging
+        scheduleJobAckReceive:
+          destination: scheduleJobAckStaging
+        clientEmailSend:
+          destination: clientEmailStaging
+        fcmFailureEventReceive:
+          destination: fcmEventFailureStaging
+        emailFailureEventReceive:
+          destination: emailFailureEventStaging
+        inEventForLiveSegment:
+          destination: processliveevent
+        outLiveSegment:
+          destination: processliveuser
+        inJobForLiveSegmentCheck:
+          destination: liveusercheck
+        scheduleLiveJobSend:
+          destination: scheduleLiveJobStaging
+        outTestCampaign:
+          destination: testCampaignStaging
+        triggerManualCampaign:
+          destination: manualCampaignStaging
+
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
-# Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
-# Because detection is disabled you have to set correct dialect by hand.
+  # Disable feature detection by this undocumented parameter. Check the org.hibernate.engine.jdbc.internal.JdbcServiceImpl.configure method for more details.
+  # Because detection is disabled you have to set correct dialect by hand.
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
@@ -50,7 +153,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/jogendra
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -59,18 +162,21 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
+    hikari:
+      maximum-pool-size: 3
+      idle-timeout: 10000
   data:
     mongodb:
-      database: eventdbstaging
+      database: jogendra
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
   flyway:
-      placeholder-replacement: false
+    placeholder-replacement: false
 
   zipkin:
-    base-url: http://springbootzipkin:7777
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
     sender:
-      type: kafka
+      type: web
   sleuth:
     sampler:
       probability: 1
@@ -101,7 +207,7 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /application/health
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: true
     region: desktop
     service-url:
@@ -137,9 +243,13 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
   url:
     event: http://userndot.com/event
     client: http://userndot.com/client
+    clientui: http://userndot.com/
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@userndot.com
   lambda:

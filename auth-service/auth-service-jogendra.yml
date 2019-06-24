@@ -13,23 +13,42 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           clientEmailSend:
+            producer:
+              configuration:
+                client:
+                  id: 1
             group: clientEmailSendGroup
             destination: clientEmailStaging
+      bindings:
+        clientEmailSend:
+          destination: clientEmailStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/jogendra
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
+  data:
+    mongodb:
+      database: jogendra
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
     tomcat:
       initial-size: 10
       max-wait: 10000
@@ -39,7 +58,14 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
-    database: 2
+    database: 1
+  zipkin:
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
 
 security:
   header:
@@ -58,7 +84,7 @@ eureka:
     prefer-ip-address: true
     health-check-url-path: /application/health
   client:
-    register-with-eureka: false
+    register-with-eureka: true
     fetch-registry: true
     region: desktop
     service-url:
@@ -78,12 +104,17 @@ und:
   system:
     user:
       token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+    from:
+      address: userndot19@gmail.com
   metadata:
-    userProperties: userproperties.json
+    userProperties: /home/shiv/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
-    clientpanelui: http://userndot.com/auth/
+    clientpanelui: http://userndot.com
   auth-url: http://nestros.com:8080/auth
   from-email: shiv@userndot.com
 

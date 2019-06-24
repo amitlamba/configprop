@@ -1,62 +1,151 @@
 server:
   port: 5464
 
-und:
-  url:
-    event: http://userndot.com/event
 
 spring:
+  application:
+    name: event-api
   jackson:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            #zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            #producer-configuration:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #producer-configuration:
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
+            max:
+              poll:
+                records: 50
+                interval:
+                  ms: 300000
+            heartbeat:
+              interval:
+                ms: 3000
+            session:
+              timeout:
+                ms: 10000
         bindings:
-          inEvent:
-            group: inEvent
-            destination: eventStaging
+          #          inEvent:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                  id: 1
+          #                group:
+          #                  id: inEvent
+          #            group: inEvent
+          #            destination: eventStaging
           outEvent:
             group: outEvent
             destination: eventStaging
-          inEventUser:
-            group: inEventUser
-            destination: eventUserStaging
+          #          inEventUser:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                  id: 2
+          #                group:
+          #                 id: inEventUser
+          #            group: inEventUser
+          #            destination: eventUserStaging
           outEventUser:
             group: outEventUser
             destination: eventUserStaging
-          inProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfileStaging
-          outProcessEventUserProfile:
-              group: processEventUserProfile
-              destination: processUserProfileStaging
-          inTrackEvent:
-            group: inTrackEvent
-            destination: trackEventStaging
+          #          inProcessEventUserProfile:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                 id: 3
+          #                group:
+          #                 id: processEventUserProfile
+          #            group: processEventUserProfile
+          #            destination: processUserProfileStaging
+          #          outProcessEventUserProfile:
+          #              group: processEventUserProfile
+          #              destination: processUserProfileStaging
+          #          inTrackEvent:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                  id: 4
+          #                group:
+          #                  id: inTrackEvent
+          #            group: inTrackEvent
+          #            destination: trackEventStaging
           outTrackEvent:
             group: outTrackEvent
             destination: trackEventStaging
-          inEmailRead:
-            group: inEmailRead
-            destination: emailReadStaging
+          #          inEmailRead:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                  id: 5
+          #                group:
+          #                  id: inEmailRead
+          #            group: inEmailRead
+          #            destination: emailReadStaging
           outEmailRead:
             group: outEmailRead
             destination: emailReadStaging
-          inNotificationRead:
-            group: inNotification
-            destination: trackNotification
+          #          inNotificationRead:
+          #            consumer:
+          #              configuration:
+          #                client:
+          #                  id: 6
+          #                group:
+          #                  id: inNotification
+          #            group: inNotification
+          #            destination: trackNotification
           outNotificationRead:
             group: outNotification
             destination: trackNotification
+      #          outEventForLiveSegment:
+      #            destination: processliveevent
+      bindings:
+        #        inEvent:
+        #          destination: eventStaging
+        outEvent:
+          destination: eventStaging
+        #        inEventUser:
+        #          destination: eventUserStaging
+        outEventUser:
+          destination: eventUserStaging
+        #        inProcessEventUserProfile:
+        #          destination: processUserProfileStaging
+        #        outProcessEventUserProfile:
+        #          destination: processUserProfileStaging
+        #        inTrackEvent:
+        #          destination: trackEventStaging
+        outTrackEvent:
+          destination: trackEventStaging
+        #        inEmailRead:
+        #          destination: emailReadStaging
+        outEmailRead:
+          destination: emailReadStaging
+        #        inNotificationRead:
+        #          destination: trackNotification
+        outNotificationRead:
+          destination: trackNotification
+  #        outEventForLiveSegment:
+  #          destination: processliveevent
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/jogendra
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
@@ -73,9 +162,9 @@ spring:
       port: ${MONGO_PORT}
 
   zipkin:
-    base-url: http://springbootzipkin:7777
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
     sender:
-      type: kafka
+      type: web
   sleuth:
     sampler:
       probability: 1
