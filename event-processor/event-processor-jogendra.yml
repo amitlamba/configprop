@@ -201,8 +201,8 @@ spring:
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/jogendra
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password:  postgres
+    username: jogender
+    password: jogendra
     tomcat:
       initial-size: 10
       max-wait: 10000
