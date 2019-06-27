@@ -130,7 +130,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: ${HOME}/log/staging/und-event-api.log
+  file: /Users/jogender/log/staging/und-event-api.log
 
 und:
   system:
