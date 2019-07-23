@@ -187,6 +187,66 @@ spring:
             destination: scheduleJobStaging
           clientEmailSend:
             destination: clientEmailStaging
+          outTestEmail:
+            destination: testEmail
+          outTestSms:
+            destination: testSms
+          outTestFcm:
+            destination: testFcm
+          outEmailLiveCampaign:
+            destination: emailLiveCampaign
+          outSmsLiveCampaign:
+            destination: smsLiveCampaign
+          outFcmLiveCampaign:
+            destination: fcmLiveCampaign
+          inTestEmail:
+            consumer:
+              configuration:
+                client:
+                  id: 13
+                group:
+                  id: testEmailGroup
+            destination: testEmail
+          inTestSms:
+            consumer:
+              configuration:
+                client:
+                  id: 14
+                group:
+                  id: testSmsGroup
+            destination: testSms
+          inTestFcm:
+            consumer:
+              configuration:
+                client:
+                  id: 14
+                group:
+                  id: testFcmGroup
+            destination: testFcm
+          inEmailLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 15
+                group:
+                  id: liveEmailGroup
+            destination: emailLiveCampaign
+          inSmsLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 16
+                group:
+                  id: liveSmsGroup
+            destination: smsLiveCampaign
+          inFcmLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 17
+                group:
+                  id: liveFcmGroup
+            destination: fcmLiveCampaign
       bindings:
         emailEventSend:
           destination: emailEventStaging
@@ -226,6 +286,31 @@ spring:
           destination: scheduleJobStaging
         clientEmailSend:
           destination: clientEmailStaging
+        outTestEmail:
+          destination: testEmail
+        outTestSms:
+          destination: testSms
+        outTestFcm:
+          destination: testFcm
+        outEmailLiveCampaign:
+          destination: emailLiveCampaign
+        outSmsLiveCampaign:
+          destination: smsLiveCampaign
+        outFcmLiveCampaign:
+          destination: fcmLiveCampaign
+        inTestEmail:
+          destination: testEmail
+        inTestSms:
+          destination: testSms
+        inTestFcm:
+          destination: testFcm
+        inEmailLiveCampaign:
+          destination: emailLiveCampaign
+        inSmsLiveCampaign:
+          destination: smsLiveCampaign
+        inFcmLiveCampaign:
+          destination: fcmLiveCampaign
+
   mvc:
     view:
       prefix: /WEB-INF/views/
