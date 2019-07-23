@@ -18,214 +18,299 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            configuration:
-              enable:
-                auto:
-                  commit: true
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          configuration:
+            enable:
               auto:
-                offset:
-                  reset: earliest
-#                  This property effect performance.
-                commit:
-                  interval:
-                    ms: 5000  #default value
-              max:
-                poll:
-                  interval:
-                    ms: 300000  # default value
-          bindings:
-            emailEventSend:
-              producer:
-                configuration:
-                  client:
-                    id: 1
-              group: emailEventGroup
-              destination: emailEventStaging
-            emailEventReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 1
-                  group:
-                    id: emailEventReceive
-              group: emailEventReceive
-              destination: emailEventStaging
-            smsEventSend:
-              producer:
-                configuration:
-                  client:
-                    id: 2
-              group: smsEventGroup
-              destination: smsEventStaging
-            smsEventReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 2
-                  group:
-                    id: smsEventReceive
-              group: smsEventReceive
-              destination: smsEventStaging
-            clientEmailReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 3
-                  group:
-                    id: clientEmailReceiveGroup
-              group: clientEmailReceiveGroup
-              destination: clientEmailStaging
-            clickTrackEventReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 4
-                  group:
-                    id: clickTrackEventGroup
-              group: clickTrackEventGroup
-              destination: clickTrackEventStaging
-            EmailUpdateReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 5
-                  group:
-                    id: EmailUpdateReceiveGroup
-              group: EmailUpdateReceiveGroup
-              destination: EmailUpdateStaging
-            campaignTriggerReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 6
-                  group:
-                    id: campaignTriggerReceive
-              group: campaignTriggerReceive
-              destination: campaignTriggerStaging
-            fcmEventSend:
-              producer:
-                configuration:
-                  client:
-                    id: 3
-              group: fcmMessageGroup
-              destination: fcmMessageStaging
-            fcmEventReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 7
-                  group:
-                    id: fcmMessageReceive
-#              group: fcmMessageReceive
-#              destination: fcmMessageStaging
-            fcmFailureEventSend:
-              producer:
-                configuration:
-                  client:
-                    id: 4
-              group: fcmFailureEventGroup
-              destination: fcmEventFailureStaging
-            emailFailureEventSend:
-              producer:
-                configuration:
-                  client:
-                    id: 5
-              group: emailFailureEventGroup
-              destination: emailFailureEventStaging
-            VerificationEmailReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 8
-                  group:
-                    id: verificationEmailReceive
-              group: verificationEmailReceive
-              destination: verificationEmailStaging
-            inLiveSegment:
-              consumer:
-                configuration:
-                  client:
-                    id: 9
-                  group:
-                    id: processLiveUserReceiveGroup
-              group: processLiveUserReceiveGroup
-              destination: processliveuser
-            inTestCampaign:
-              consumer:
-                configuration:
-                  client:
-                    id: 10
-                  group:
-                    id: testCampaignReceiveGroup
-              group: testCampaignReceiveGroup
-              destination: testCampaignStaging
-            abCampaignTriggerReceive:
-              consumer:
-                configuration:
-                  client:
-                    id: 11
-                  group:
-                    id: abCampaignTriggerReceiveGroup
-            receiveManualTriggerCampaign:
-              consumer:
-                configuration:
-                  client:
-                    id: 12
-                  group:
-                    id: manualCampaignTriggerReceiveGroup
-              group: manualCampaignTriggerReceiveGroup
-              destination: manualCampaignStaging
-            scheduleJobSend:
-              group: scheduleJobGroup
-              destination: scheduleJobStaging
-            clientEmailSend:
-              destination: clientEmailStaging
+                commit: true
+            auto:
+              offset:
+                reset: earliest
+              #                  This property effect performance.
+              commit:
+                interval:
+                  ms: 5000  #default value
+            max:
+              poll:
+                interval:
+                  ms: 300000  # default value
         bindings:
           emailEventSend:
+            producer:
+              configuration:
+                client:
+                  id: 1
+            group: emailEventGroup
             destination: emailEventStaging
           emailEventReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: emailEventReceive
+            group: emailEventReceive
             destination: emailEventStaging
           smsEventSend:
+            producer:
+              configuration:
+                client:
+                  id: 2
+            group: smsEventGroup
             destination: smsEventStaging
           smsEventReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 2
+                group:
+                  id: smsEventReceive
+            group: smsEventReceive
             destination: smsEventStaging
           clientEmailReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 3
+                group:
+                  id: clientEmailReceiveGroup
+            group: clientEmailReceiveGroup
             destination: clientEmailStaging
           clickTrackEventReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 4
+                group:
+                  id: clickTrackEventGroup
+            group: clickTrackEventGroup
             destination: clickTrackEventStaging
           EmailUpdateReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 5
+                group:
+                  id: EmailUpdateReceiveGroup
+            group: EmailUpdateReceiveGroup
             destination: EmailUpdateStaging
           campaignTriggerReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 6
+                group:
+                  id: campaignTriggerReceive
+            group: campaignTriggerReceive
             destination: campaignTriggerStaging
           fcmEventSend:
+            producer:
+              configuration:
+                client:
+                  id: 3
+            group: fcmMessageGroup
             destination: fcmMessageStaging
           fcmEventReceive:
-            destination: fcmMessageStaging
+            consumer:
+              configuration:
+                client:
+                  id: 7
+                group:
+                  id: fcmMessageReceive
+          #              group: fcmMessageReceive
+          #              destination: fcmMessageStaging
           fcmFailureEventSend:
+            producer:
+              configuration:
+                client:
+                  id: 4
+            group: fcmFailureEventGroup
             destination: fcmEventFailureStaging
           emailFailureEventSend:
+            producer:
+              configuration:
+                client:
+                  id: 5
+            group: emailFailureEventGroup
             destination: emailFailureEventStaging
           VerificationEmailReceive:
+            consumer:
+              configuration:
+                client:
+                  id: 8
+                group:
+                  id: verificationEmailReceive
+            group: verificationEmailReceive
             destination: verificationEmailStaging
           inLiveSegment:
+            consumer:
+              configuration:
+                client:
+                  id: 9
+                group:
+                  id: processLiveUserReceiveGroup
+            group: processLiveUserReceiveGroup
             destination: processliveuser
           inTestCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 10
+                group:
+                  id: testCampaignReceiveGroup
+            group: testCampaignReceiveGroup
             destination: testCampaignStaging
           abCampaignTriggerReceive:
-            destination: abCampaignTriggerStaging
+            consumer:
+              configuration:
+                client:
+                  id: 11
+                group:
+                  id: abCampaignTriggerReceiveGroup
           receiveManualTriggerCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 12
+                group:
+                  id: manualCampaignTriggerReceiveGroup
+            group: manualCampaignTriggerReceiveGroup
             destination: manualCampaignStaging
           scheduleJobSend:
+            group: scheduleJobGroup
             destination: scheduleJobStaging
           clientEmailSend:
             destination: clientEmailStaging
+          outTestEmail:
+            destination: testEmail
+          outTestSms:
+            destination: testSms
+          outTestFcm:
+            destination: testFcm
+          outEmailLiveCampaign:
+            destination: emailLiveCampaign
+          outSmsLiveCampaign:
+            destination: smsLiveCampaign
+          outFcmLiveCampaign:
+            destination: fcmLiveCampaign
+          inTestEmail:
+            consumer:
+              configuration:
+                client:
+                  id: 13
+                group:
+                  id: testEmailGroup
+            destination: testEmail
+          inTestSms:
+            consumer:
+              configuration:
+                client:
+                  id: 14
+                group:
+                  id: testSmsGroup
+            destination: testSms
+          inTestFcm:
+            consumer:
+              configuration:
+                client:
+                  id: 14
+                group:
+                  id: testFcmGroup
+            destination: testFcm
+          inEmailLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 15
+                group:
+                  id: liveEmailGroup
+            destination: emailLiveCampaign
+          inSmsLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 16
+                group:
+                  id: liveSmsGroup
+            destination: smsLiveCampaign
+          inFcmLiveCampaign:
+            consumer:
+              configuration:
+                client:
+                  id: 17
+                group:
+                  id: liveFcmGroup
+            destination: fcmLiveCampaign
+      bindings:
+        emailEventSend:
+          destination: emailEventStaging
+        emailEventReceive:
+          destination: emailEventStaging
+        smsEventSend:
+          destination: smsEventStaging
+        smsEventReceive:
+          destination: smsEventStaging
+        clientEmailReceive:
+          destination: clientEmailStaging
+        clickTrackEventReceive:
+          destination: clickTrackEventStaging
+        EmailUpdateReceive:
+          destination: EmailUpdateStaging
+        campaignTriggerReceive:
+          destination: campaignTriggerStaging
+        fcmEventSend:
+          destination: fcmMessageStaging
+        fcmEventReceive:
+          destination: fcmMessageStaging
+        fcmFailureEventSend:
+          destination: fcmEventFailureStaging
+        emailFailureEventSend:
+          destination: emailFailureEventStaging
+        VerificationEmailReceive:
+          destination: verificationEmailStaging
+        inLiveSegment:
+          destination: processliveuser
+        inTestCampaign:
+          destination: testCampaignStaging
+        abCampaignTriggerReceive:
+          destination: abCampaignTriggerStaging
+        receiveManualTriggerCampaign:
+          destination: manualCampaignStaging
+        scheduleJobSend:
+          destination: scheduleJobStaging
+        clientEmailSend:
+          destination: clientEmailStaging
+        outTestEmail:
+          destination: testEmail
+        outTestSms:
+          destination: testSms
+        outTestFcm:
+          destination: testFcm
+        outEmailLiveCampaign:
+          destination: emailLiveCampaign
+        outSmsLiveCampaign:
+          destination: smsLiveCampaign
+        outFcmLiveCampaign:
+          destination: fcmLiveCampaign
+        inTestEmail:
+          destination: testEmail
+        inTestSms:
+          destination: testSms
+        inTestFcm:
+          destination: testFcm
+        inEmailLiveCampaign:
+          destination: emailLiveCampaign
+        inSmsLiveCampaign:
+          destination: smsLiveCampaign
+        inFcmLiveCampaign:
+          destination: fcmLiveCampaign
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -257,7 +342,7 @@ spring:
       port: ${MONGO_PORT}
 
   zipkin:
-    base-url: http://192.168.0.109:9411/
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
     sender:
       type: web
   sleuth:

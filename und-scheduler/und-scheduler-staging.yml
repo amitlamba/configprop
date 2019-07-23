@@ -50,6 +50,15 @@ spring:
           abCampaignTriggerSend:
             group: abCampaignTrigger
             destination: abCampaignTriggerStaging
+          inSegmentScheduleJob:
+            consumer:
+              configuration:
+                group:
+                  id: scheduleSegmentJobReceiver
+                client:
+                  id: 3
+          outComputeSegment:
+            destination: computeSegment
       bindings:
         scheduleJobReceive:
           destination: scheduleJobStaging
@@ -63,6 +72,10 @@ spring:
           destination: scheduleLiveJobStaging
         abCampaignTriggerSend:
           destination: abCampaignTriggerStaging
+        inSegmentScheduleJob:
+          destination: scheduleSegmentJob
+        outComputeSegment:
+          destination: computeSegment
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrencestaging
@@ -76,7 +89,7 @@ spring:
       test-on-borrow: true
 
   zipkin:
-    base-url: http://192.168.0.109:9411/
+    base-url: http://${ZIPKIN_SERVER}:${ZIPKIN_PORT}/
     sender:
       type: web
   sleuth:
