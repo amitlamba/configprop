@@ -60,7 +60,7 @@ spring:
     port: ${REDIS_PORT}
     database: 1
   zipkin:
-    base-url: http://192.168.0.109:9411/
+    base-url: http://${ZIPKIN)SERVER}:${ZIPKIN_PORT}/
     sender:
       type: web
   sleuth:
