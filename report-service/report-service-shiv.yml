@@ -26,7 +26,7 @@ spring:
           use_jdbc_metadata_defaults: false
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/springboard
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -40,7 +40,7 @@ spring:
       idle-timeout: 10000
   data:
     mongodb:
-      database: jogendra
+      database: eventdbspringboard
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
   flyway:
