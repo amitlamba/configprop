@@ -1,6 +1,7 @@
 # config context path to "/" by setting an empty string
 server:
-  port: 9595
+  port: 9605
+  contextPath:
 
 # JACKSON
 spring:
@@ -12,41 +13,40 @@ spring:
     serialization:
       INDENT_OUTPUT: true
   cloud:
-      stream:
-        kafka:
-          binder:
-            brokers: ${KAFKA_IP}
-            defaultBrokerPort: ${KAFKA_PORT}
-            zkNodes: ${KAFKA_IP}
-            defaultZkPort: 2181
-            configuration:
-              enable:
-                auto:
-                  commit: true
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          configuration:
+            enable:
               auto:
-                offset:
-                  reset: earliest
-          bindings:
-            clientEmailSend:
-              producer:
-                configuration:
-                  client:
-                    id: 1
-              group: clientEmailSendGroup
-              destination: clientEmailShiv
+                commit: true
+            auto:
+              offset:
+                reset: earliest
         bindings:
           clientEmailSend:
+            producer:
+              configuration:
+                client:
+                  id: 1
             group: clientEmailSendGroup
-            destination: clientEmailShiv
+            destination: clientEmailStaging
+      bindings:
+        clientEmailSend:
+          destination: clientEmailStaging
 
   datasource:
-    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/undstaging
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/springboard
     driver-class-name: org.postgresql.Driver
     username: postgres
     password:  postgres
   data:
     mongodb:
-      database: eventdbstaging
+      database: eventdbspringboard
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
     tomcat:
@@ -54,14 +54,18 @@ spring:
       max-wait: 10000
       max-active: 50
       test-on-borrow: true
-    hikari:
-      maximum-pool-size: 2
-      idle-timeout: 10000
 
   redis:
-    host: userndot.com
+    host: ${REDIS_IP}
     port: ${REDIS_PORT}
     database: 1
+  zipkin:
+    base-url: http://${ZIPKIN)SERVER}:${ZIPKIN_PORT}/
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
 
 security:
   header:
@@ -84,7 +88,7 @@ eureka:
     fetch-registry: true
     region: desktop
     service-url:
-      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT_STAGING}/eureka
 
 logging:
   level:
@@ -94,7 +98,7 @@ logging:
       hibernate: info
     com:
       und: info
-  file: log/und-auth-service.log
+  file: ${HOME}/log/staging/und-auth-service.log
 
 und:
   system:
@@ -104,9 +108,9 @@ und:
       setting:
         id: 1
     from:
-      address: shiv@userndot.com
+      address: userndot19@gmail.com
   metadata:
-    userProperties: userproperties.json
+    userProperties: /home/shiv/und/initconfig/userproperties.json
     eventMetadata: eventMetadata.json
   url:
     event: http://userndot.com/event
