@@ -40,7 +40,7 @@ spring:
       idle-timeout: 10000
   data:
     mongodb:
-      database: jogendra
+      database: eventdbstaging
       host: ${MONGO_IP}
       port: ${MONGO_PORT}
   flyway:
