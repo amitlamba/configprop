@@ -194,6 +194,11 @@ spring:
           outTestFcm:
             destination: testFcm
           outEmailLiveCampaign:
+            producer:
+              configuration:
+                client:
+                  id: 6
+            group: emailLiveCampaignOut
             destination: emailLiveCampaign
           outSmsLiveCampaign:
             destination: smsLiveCampaign
