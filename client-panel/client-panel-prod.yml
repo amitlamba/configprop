@@ -102,6 +102,24 @@ spring:
               destination: testCampaign
             triggerManualCampaign:
               destination: manualCampaign
+            inSegment:
+              consumer:
+                configuration:
+                  group:
+                    id: SegmentProcessing
+                  client:
+                    id: 6
+            outSegment:
+              destination: processSegment
+            outSegmentScheduleJob:
+              destination: scheduleSegmentJob
+            inComputeSegment:
+              consumer:
+                configuration:
+                  group:
+                    id: computeSegmentGroup
+                  client:
+                    id: 7
         bindings:
           scheduleJobSend:
 #            group: scheduleJobGroup
@@ -130,6 +148,14 @@ spring:
             destination: testCampaign
           triggerManualCampaign:
             destination: manualCampaignStaging
+          inSegment:
+            destination: processSegment
+          outSegment:
+            destination: processSegment
+          outSegmentScheduleJob:
+            destination: scheduleSegmentJob
+          inComputeSegment:
+            destination: computeSegment
   mvc:
     view:
       prefix: /WEB-INF/views/

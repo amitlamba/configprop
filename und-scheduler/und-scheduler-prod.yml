@@ -51,6 +51,15 @@ spring:
           abCampaignTriggerSend:
             group: abCampaignTrigger
             destination: abCampaignTrigger
+          inSegmentScheduleJob:
+            consumer:
+              configuration:
+                group:
+                  id: scheduleSegmentJobReceiver
+                client:
+                  id: 3
+          outComputeSegment:
+            destination: computeSegment
       bindings:
         scheduleJobReceive:
           group: scheduleJobReceive
@@ -67,6 +76,10 @@ spring:
           destination: scheduleLiveJob
         abCampaignTriggerSend:
           destination: abCampaignTrigger
+        inSegmentScheduleJob:
+          destination: scheduleSegmentJob
+        outComputeSegment:
+          destination: computeSegment
 
   datasource:
     url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/recurrence

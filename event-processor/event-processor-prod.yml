@@ -1,0 +1,270 @@
+server:
+  port: 5465
+
+
+spring:
+  application:
+    name: event-processor
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          #producer-configuration:
+          configuration:
+            enable:
+              auto:
+                commit: true
+            auto:
+              offset:
+                reset: earliest
+            max:
+              poll:
+                records: 50
+                interval:
+                  ms: 300000
+            heartbeat:
+              interval:
+                ms: 3000
+            session:
+              timeout:
+                ms: 10000
+        bindings:
+          saveEvent:
+            consumer:
+              configuration:
+                client:
+                  id: 1
+                group:
+                  id: saveEventProd
+          buildEventMetadata:
+            consumer:
+              configuration:
+                client:
+                  id: 2
+                group:
+                  id: buildEventMetadataProd
+          processEventSegment:
+            consumer:
+              configuration:
+                client:
+                  id: 3
+                group:
+                  id: processEventSegmentProd
+          saveUser:
+            consumer:
+              configuration:
+                client:
+                  id: 4
+                group:
+                  id: saveUserProd
+          buildUserMetadata:
+            consumer:
+              configuration:
+                client:
+                  id: 5
+                group:
+                  id: buildUserMetadataProd
+          processUserSegment:
+            consumer:
+              configuration:
+                client:
+                  id: 6
+                group:
+                  id: processUserSegmentProd
+#          inEvent:
+#            consumer:
+#              configuration:
+#                client:
+#                  id: 1
+#                group:
+#                  id: inEvent
+#            group: inEvent
+#            destination: eventStaging
+#          outEvent:
+#            group: outEvent
+#            destination: eventStaging
+#          inEventUser:
+#            consumer:
+#              configuration:
+#                client:
+#                  id: 2
+#                group:
+#                 id: inEventUser
+#            group: inEventUser
+#            destination: eventUserStaging
+#          outEventUser:
+#            group: outEventUser
+#            destination: eventUserStaging
+          inProcessEventUserProfile:
+            consumer:
+              configuration:
+                client:
+                 id: 7
+                group:
+                 id: processEventUserProfile
+            group: processEventUserProfile
+            destination: processUserProfileProd
+          outProcessEventUserProfile:
+              group: processEventUserProfile
+              destination: processUserProfileProd
+          inTrackEvent:
+            consumer:
+              configuration:
+                client:
+                  id: 8
+                group:
+                  id: inTrackEvent
+            group: inTrackEvent
+            destination: trackEventProd
+#          outTrackEvent:
+#            group: outTrackEvent
+#            destination: trackEventStaging
+          inEmailRead:
+            consumer:
+              configuration:
+                client:
+                  id: 9
+                group:
+                  id: inEmailRead
+            group: inEmailRead
+            destination: emailReadProd
+#          outEmailRead:
+#            group: outEmailRead
+#            destination: emailReadStaging
+          inNotificationRead:
+            consumer:
+              configuration:
+                client:
+                  id: 10
+                group:
+                  id: inNotification
+            group: inNotification
+            destination: trackNotification
+#          outNotificationRead:
+#            group: outNotification
+#            destination: trackNotification
+          outEventForLiveSegment:
+            destination: processliveevent
+      bindings:
+#        inEvent:
+#          destination: eventStaging
+#        outEvent:
+#          destination: eventStaging
+#        inEventUser:
+#          destination: eventUserStaging
+#        outEventUser:
+#          destination: eventUserStaging
+        saveEvent:
+          destination: eventProd
+        buildEventMetadata:
+          destination: eventProd
+        processEventSegment:
+          destination: eventProd
+        saveUser:
+          destination: eventUserProd
+        buildUserMetadata:
+          destination: eventUserProd
+        processUserSegment:
+          destination: eventUserProd
+        inProcessEventUserProfile:
+          destination: processUserProfileProd
+        outProcessEventUserProfile:
+          destination: processUserProfileProd
+        inTrackEvent:
+          destination: trackEventProd
+#        outTrackEvent:
+#          destination: trackEventStaging
+        inEmailRead:
+          destination: emailReadProd
+#        outEmailRead:
+#          destination: emailReadStaging
+        inNotificationRead:
+          destination: trackNotification
+#        outNotificationRead:
+#          destination: trackNotification
+        outEventForLiveSegment:
+          destination: processliveevent
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_IP}:${POSTGRES_PORT}/und
+    driver-class-name: org.postgresql.Driver
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    tomcat:
+      initial-size: 10
+      max-wait: 10000
+      max-active: 50
+      test-on-borrow: true
+
+  data:
+    mongodb:
+      database: eventdb
+      host: ${MONGO_IP}
+      port: ${MONGO_PORT}
+
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
+
+security:
+  header:
+    token: Authorization
+    username: UserName
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    health-check-url-path: /application/health
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    region: desktop
+    service-url:
+      defaultZone: http://${EUREKA_IP}:${EUREKA_PORT}/eureka
+
+logging:
+  level:
+    org:
+      springframework: info
+      apache: info
+      hibernate: info
+    com:
+      und: info
+  file: ${HOME}/log/und-event-processor.log
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+  url:
+    event: https://userndot.com/event
+  auth-url: https://userndot.com/auth
+  from-email: admin@userndot.com
