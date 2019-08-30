@@ -35,28 +35,28 @@ spring:
         bindings:
           outEvent:
             group: outEvent
-            destination: event
+            destination: eventProd
           outEventUser:
             group: outEventUser
-            destination: eventUser
+            destination: eventUserProd
           outTrackEvent:
             group: outTrackEvent
-            destination: trackEvent
+            destination: trackEventProd
           outEmailRead:
             group: outEmailRead
-            destination: emailRead
+            destination: emailReadProd
           outNotificationRead:
             group: outNotification
             destination: trackNotification
       bindings:
         outEvent:
-          destination: event
+          destination: eventProd
         outEventUser:
-          destination: eventUser
+          destination: eventUserProd
         outTrackEvent:
-          destination: trackEvent
+          destination: trackEventProd
         outEmailRead:
-          destination: emailRead
+          destination: emailReadProd
         outNotificationRead:
           destination: trackNotification
   datasource:
