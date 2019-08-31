@@ -97,3 +97,32 @@ logging:
           core:
             MongoTemplate: WARN
   file: ${HOME}/log/und-report-service.log
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        errorDecoder: com.und.feign.AuthFeignErrorDecoder
+
+und:
+  system:
+    user:
+      token: jasdghajskdhg
+    email:
+      setting:
+        id: 1
+  url:
+    event: https://userndot.com/event
+    client: https://userndot.com/client
+    clientui: http://userndot.com/
+  auth-url: https://userndot.com/auth
+  from-email: admin@userndot.com
+  lambda:
+    funnel:
+      secretKey: tEA3hwNdgerwF4oiVIscjtvEbPIJvwePxrNCAdhv
+      accessKey: AKIAIEEV7Q6MG5DLL52Q
+      region : ap-south-1
+      functionName: FunnelData
