@@ -218,7 +218,7 @@ spring:
   zipkin:
     base-url: http://springbootzipkin:7777
     sender:
-      type: web
+      type: kafka
   sleuth:
     sampler:
       probability: 1

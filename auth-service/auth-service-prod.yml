@@ -59,6 +59,14 @@ spring:
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
+    database: 1
+  zipkin:
+    base-url: http://springbootzipkin:7777
+    sender:
+      type: kafka
+  sleuth:
+    sampler:
+      probability: 1
 
 security:
   header:
