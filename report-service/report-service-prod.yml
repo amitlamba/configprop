@@ -98,15 +98,6 @@ logging:
             MongoTemplate: WARN
   file: ${HOME}/log/und-report-service.log
 
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: full
-        errorDecoder: com.und.feign.AuthFeignErrorDecoder
-
 und:
   system:
     user:
