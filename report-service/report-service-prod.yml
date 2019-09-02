@@ -6,6 +6,17 @@ server:
 spring:
   application:
     name: report-service
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_IP}
+          defaultBrokerPort: ${KAFKA_PORT}
+          #zkNodes: ${KAFKA_IP}
+          defaultZkPort: 2181
+          auto-create-topics: true
+          min-partition-count: 1
+          replication-factor: 1
   thymeleaf:
     cache: false
   jackson:
