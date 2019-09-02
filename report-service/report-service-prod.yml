@@ -64,6 +64,8 @@ spring:
   sleuth:
     sampler:
       probability: 1
+  kafka:
+    bootstrap-servers: ${KAFKA_IP}:${KAFKA_PORT}
   redis:
     host: ${REDIS_IP}
     port: ${REDIS_PORT}
